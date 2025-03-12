@@ -1,11 +1,7 @@
 ﻿using Book_Haven__Application.Data.Models;
 using Book_Haven_System_Ad.Data.Repository.Interfaces;
 using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data;
 
 namespace Book_Haven_System_Ad.Data.Repository
 {
@@ -233,6 +229,43 @@ namespace Book_Haven_System_Ad.Data.Repository
 
     return null;  // Return null if no book is found
 }
+        public List<BookModel> GetLowStockBooks()
+        {
+            List<BookModel> lowStockBooks = new List<BookModel>();
+            string query = "SELECT * FROM books WHERE Stock <= 5 AND IsDeleted = 0";
+
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                // Open the connection
+                connection.Open();
+
+                // Prepare the query command
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                // Execute the command and get the data
+                using (MySqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        lowStockBooks.Add(new BookModel
+                        {
+                            // Safe handling of DBNull for BookID (assuming it's a GUID)
+                            BookID = Guid.Parse(reader["BookID"].ToString()),
+                            Title = reader["Title"].ToString(),
+                            Author = reader["Author"].ToString(),
+                            ISBN = reader["ISBN"].ToString(),
+                            Price = decimal.Parse(reader["Price"].ToString()),
+                            Stock = int.Parse(reader["Stock"].ToString())
+                        });
+                    }
+                }
+            }
+
+            return lowStockBooks;
+        }
+
+
+
 
     }
 }

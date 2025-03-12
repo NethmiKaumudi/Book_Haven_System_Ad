@@ -46,7 +46,13 @@ namespace Book_Haven_System_Ad.Business.Services
         }
         public BookModel GetBookByName(string bookName)
         {
+          
             return _bookRepo.GetBookByName(bookName);  
+        }
+
+        public List<BookModel> GetLowStockBooks()
+        {
+            return _bookRepo.GetLowStockBooks();
         }
     }
 }

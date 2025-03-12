@@ -76,50 +76,66 @@ namespace Book_Haven_System_Ad.Data.Repository
 
             var purchaseOrders = new List<PurchaseOrderModel>();
 
-            using (var conn = new MySqlConnection(connectionString))
+            try
             {
-                conn.Open();
-                var command = new MySqlCommand(query, conn);
-
-                using (var reader = command.ExecuteReader())
+                using (var conn = new MySqlConnection(connectionString))
                 {
-                    // This will hold the current PurchaseOrder being processed
-                    PurchaseOrderModel currentPurchaseOrder = null;
+                    conn.Open();
+                    var command = new MySqlCommand(query, conn);
 
-                    while (reader.Read())
+                    using (var reader = command.ExecuteReader())
                     {
-                        // Check if we need to create a new PurchaseOrderModel
-                        var purchaseOrderID = reader.GetGuid("PurchaseOrderID");
-                        if (currentPurchaseOrder == null || currentPurchaseOrder.PurchaseOrderID != purchaseOrderID)
-                        {
-                            // Create a new PurchaseOrderModel
-                            currentPurchaseOrder = new PurchaseOrderModel
-                            {
-                                PurchaseOrderID = purchaseOrderID,
-                                SupplierID = reader.GetGuid("SupplierID"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                TotalAmount = reader.GetDecimal("TotalAmount"),
-                                Status = reader.GetString("Status"),
-                                OrderDetails = new List<PurchaseOrderDetailsModel>()
-                            };
-                            purchaseOrders.Add(currentPurchaseOrder);
-                        }
+                        // This will hold the current PurchaseOrder being processed
+                        PurchaseOrderModel currentPurchaseOrder = null;
 
-                        // Add PurchaseOrderDetailsModel to the current PurchaseOrder
-                        currentPurchaseOrder.OrderDetails.Add(new PurchaseOrderDetailsModel
+                        while (reader.Read())
                         {
-                            PurchaseOrderDetailID = reader.GetGuid("PurchaseOrderDetailID"),
-                            PurchaseOrderID = purchaseOrderID,
-                            BookID = reader.GetGuid("BookID"),
-                            Quantity = reader.GetInt32("Quantity"),
-                            Price = reader.GetDecimal("Price")
-                        });
+                            // Check if we need to create a new PurchaseOrderModel
+                            var purchaseOrderID = reader.GetGuid("PurchaseOrderID");
+                            if (currentPurchaseOrder == null || currentPurchaseOrder.PurchaseOrderID != purchaseOrderID)
+                            {
+                                // Create a new PurchaseOrderModel
+                                currentPurchaseOrder = new PurchaseOrderModel
+                                {
+                                    PurchaseOrderID = purchaseOrderID,
+                                    SupplierID = reader.GetGuid("SupplierID"),
+                                    OrderDate = reader.GetDateTime("OrderDate"),
+                                    TotalAmount = reader.GetDecimal("TotalAmount"),
+                                    Status = reader.GetString("Status"),
+                                    OrderDetails = new List<PurchaseOrderDetailsModel>()
+                                };
+                                purchaseOrders.Add(currentPurchaseOrder);
+                            }
+
+                            // Add PurchaseOrderDetailsModel to the current PurchaseOrder
+                            currentPurchaseOrder.OrderDetails.Add(new PurchaseOrderDetailsModel
+                            {
+                                PurchaseOrderDetailID = reader.GetGuid("PurchaseOrderDetailID"),
+                                PurchaseOrderID = purchaseOrderID,
+                                BookID = reader.GetGuid("BookID"),
+                                Quantity = reader.GetInt32("Quantity"),
+                                Price = reader.GetDecimal("Price")
+                            });
+                        }
                     }
                 }
+            }
+            catch (MySqlException ex)
+            {
+                // Log the exception or handle it in a specific way (e.g., show an error message to the user)
+                Console.WriteLine($"MySQL error: {ex.Message}");
+                throw new Exception("An error occurred while retrieving purchase orders from the database.", ex);
+            }
+            catch (Exception ex)
+            {
+                // Handle other general exceptions
+                Console.WriteLine($"An error occurred: {ex.Message}");
+                throw new Exception("An unexpected error occurred while retrieving purchase orders.", ex);
             }
 
             return purchaseOrders;
         }
+
         public bool UpdatePurchaseOrderStatus(Guid purchaseOrderID, string newStatus)
         {
             using (var conn = new MySqlConnection(connectionString))

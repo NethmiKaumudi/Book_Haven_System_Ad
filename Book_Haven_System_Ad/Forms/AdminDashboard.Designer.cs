@@ -30,18 +30,20 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAdminDashboard));
             ButtonPanel = new Panel();
+            btnReports = new Button();
+            pictureBox8 = new PictureBox();
             picLogout = new PictureBox();
             lbldate = new Label();
+            btnSuppliers = new Button();
+            pictureBox5 = new PictureBox();
             lblusernameRole = new Label();
             label2 = new Label();
+            btnPO = new Button();
             pictureBox9 = new PictureBox();
             btnDashboard = new Button();
             pictureBox7 = new PictureBox();
-            btnPO = new Button();
             pictureBox6 = new PictureBox();
             btnSalespos = new Button();
-            pictureBox5 = new PictureBox();
-            btnSuppliers = new Button();
             pictureBox4 = new PictureBox();
             btnOrders = new Button();
             pictureBox3 = new PictureBox();
@@ -51,24 +53,23 @@
             pictureBox1 = new PictureBox();
             btnUsers = new Button();
             DashboardPanel = new Panel();
+            label1 = new Label();
+            checkedListBoxLawStock = new CheckedListBox();
             groupBox4 = new GroupBox();
             groupBox3 = new GroupBox();
             groupBox2 = new GroupBox();
-            groupBox1 = new GroupBox();
-            btnReports = new Button();
-            pictureBox8 = new PictureBox();
             ButtonPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogout).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             DashboardPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             SuspendLayout();
             // 
             // ButtonPanel
@@ -101,6 +102,27 @@
             ButtonPanel.Size = new Size(348, 662);
             ButtonPanel.TabIndex = 5;
             // 
+            // btnReports
+            // 
+            btnReports.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReports.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReports.Location = new Point(128, 602);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(157, 32);
+            btnReports.TabIndex = 23;
+            btnReports.Text = "Reports";
+            btnReports.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox8
+            // 
+            pictureBox8.BackgroundImage = (Image)resources.GetObject("pictureBox8.BackgroundImage");
+            pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox8.Location = new Point(60, 592);
+            pictureBox8.Name = "pictureBox8";
+            pictureBox8.Size = new Size(37, 42);
+            pictureBox8.TabIndex = 24;
+            pictureBox8.TabStop = false;
+            // 
             // picLogout
             // 
             picLogout.BackColor = Color.Transparent;
@@ -124,6 +146,27 @@
             lbldate.Size = new Size(0, 23);
             lbldate.TabIndex = 21;
             // 
+            // btnSuppliers
+            // 
+            btnSuppliers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSuppliers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSuppliers.Location = new Point(128, 494);
+            btnSuppliers.Name = "btnSuppliers";
+            btnSuppliers.Size = new Size(157, 32);
+            btnSuppliers.TabIndex = 9;
+            btnSuppliers.Text = "Suppliers";
+            btnSuppliers.UseVisualStyleBackColor = true;
+            // 
+            // pictureBox5
+            // 
+            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
+            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox5.Location = new Point(60, 487);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(37, 42);
+            pictureBox5.TabIndex = 10;
+            pictureBox5.TabStop = false;
+            // 
             // lblusernameRole
             // 
             lblusernameRole.AutoSize = true;
@@ -144,6 +187,17 @@
             label2.Size = new Size(114, 28);
             label2.TabIndex = 19;
             label2.Text = "Dashboard";
+            // 
+            // btnPO
+            // 
+            btnPO.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnPO.ImageAlign = ContentAlignment.MiddleLeft;
+            btnPO.Location = new Point(128, 552);
+            btnPO.Name = "btnPO";
+            btnPO.Size = new Size(157, 32);
+            btnPO.TabIndex = 13;
+            btnPO.Text = "Purchase Stock";
+            btnPO.UseVisualStyleBackColor = true;
             // 
             // pictureBox9
             // 
@@ -179,17 +233,6 @@
             pictureBox7.TabIndex = 14;
             pictureBox7.TabStop = false;
             // 
-            // btnPO
-            // 
-            btnPO.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPO.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPO.Location = new Point(128, 552);
-            btnPO.Name = "btnPO";
-            btnPO.Size = new Size(157, 32);
-            btnPO.TabIndex = 13;
-            btnPO.Text = "Purchase Stock";
-            btnPO.UseVisualStyleBackColor = true;
-            // 
             // pictureBox6
             // 
             pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
@@ -210,27 +253,6 @@
             btnSalespos.TabIndex = 11;
             btnSalespos.Text = "Sales(POS)";
             btnSalespos.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
-            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox5.Location = new Point(60, 487);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(37, 42);
-            pictureBox5.TabIndex = 10;
-            pictureBox5.TabStop = false;
-            // 
-            // btnSuppliers
-            // 
-            btnSuppliers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSuppliers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSuppliers.Location = new Point(128, 494);
-            btnSuppliers.Name = "btnSuppliers";
-            btnSuppliers.Size = new Size(157, 32);
-            btnSuppliers.TabIndex = 9;
-            btnSuppliers.Text = "Suppliers";
-            btnSuppliers.UseVisualStyleBackColor = true;
             // 
             // pictureBox4
             // 
@@ -323,18 +345,39 @@
             // DashboardPanel
             // 
             DashboardPanel.BackColor = SystemColors.ActiveCaption;
+            DashboardPanel.Controls.Add(label1);
+            DashboardPanel.Controls.Add(checkedListBoxLawStock);
             DashboardPanel.Controls.Add(groupBox4);
             DashboardPanel.Controls.Add(groupBox3);
             DashboardPanel.Controls.Add(groupBox2);
-            DashboardPanel.Controls.Add(groupBox1);
             DashboardPanel.Location = new Point(342, -1);
             DashboardPanel.Name = "DashboardPanel";
             DashboardPanel.Size = new Size(983, 662);
             DashboardPanel.TabIndex = 4;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.ActiveCaptionText;
+            label1.Location = new Point(67, 347);
+            label1.Name = "label1";
+            label1.Size = new Size(264, 28);
+            label1.TabIndex = 25;
+            label1.Text = "Low Stcok Notification list";
+            // 
+            // checkedListBoxLawStock
+            // 
+            checkedListBoxLawStock.BackColor = Color.Honeydew;
+            checkedListBoxLawStock.FormattingEnabled = true;
+            checkedListBoxLawStock.Location = new Point(70, 387);
+            checkedListBoxLawStock.Name = "checkedListBoxLawStock";
+            checkedListBoxLawStock.Size = new Size(897, 224);
+            checkedListBoxLawStock.TabIndex = 5;
+            // 
             // groupBox4
             // 
-            groupBox4.Location = new Point(385, 279);
+            groupBox4.Location = new Point(679, 88);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(288, 151);
             groupBox4.TabIndex = 3;
@@ -343,7 +386,7 @@
             // 
             // groupBox3
             // 
-            groupBox3.Location = new Point(70, 279);
+            groupBox3.Location = new Point(70, 88);
             groupBox3.Name = "groupBox3";
             groupBox3.Size = new Size(288, 151);
             groupBox3.TabIndex = 2;
@@ -352,42 +395,12 @@
             // 
             // groupBox2
             // 
-            groupBox2.Location = new Point(385, 107);
+            groupBox2.Location = new Point(385, 83);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(288, 151);
             groupBox2.TabIndex = 1;
             groupBox2.TabStop = false;
             groupBox2.Text = "groupBox2";
-            // 
-            // groupBox1
-            // 
-            groupBox1.Location = new Point(70, 97);
-            groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(288, 164);
-            groupBox1.TabIndex = 0;
-            groupBox1.TabStop = false;
-            groupBox1.Text = "groupBox1";
-            // 
-            // btnReports
-            // 
-            btnReports.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReports.Location = new Point(128, 602);
-            btnReports.Name = "btnReports";
-            btnReports.Size = new Size(157, 32);
-            btnReports.TabIndex = 23;
-            btnReports.Text = "Reports";
-            btnReports.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.BackgroundImage = (Image)resources.GetObject("pictureBox8.BackgroundImage");
-            pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox8.Location = new Point(60, 592);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(37, 42);
-            pictureBox8.TabIndex = 24;
-            pictureBox8.TabStop = false;
             // 
             // frmAdminDashboard
             // 
@@ -400,17 +413,18 @@
             Text = "AdminDashboard";
             ButtonPanel.ResumeLayout(false);
             ButtonPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)picLogout).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             DashboardPanel.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
+            DashboardPanel.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -441,8 +455,9 @@
         private GroupBox groupBox4;
         private GroupBox groupBox3;
         private GroupBox groupBox2;
-        private GroupBox groupBox1;
         private Button btnReports;
         private PictureBox pictureBox8;
+        private CheckedListBox checkedListBoxLawStock;
+        private Label label1;
     }
 }

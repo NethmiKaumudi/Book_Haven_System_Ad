@@ -15,5 +15,7 @@ namespace Book_Haven_System_Ad.Business.Interfaces
         List<BookModel> GetAllBooks();
         BookModel GetBookById(Guid bookID);
         BookModel GetBookByName(string bookName);
+
+        public List<BookModel> GetLowStockBooks();
     }
 }
