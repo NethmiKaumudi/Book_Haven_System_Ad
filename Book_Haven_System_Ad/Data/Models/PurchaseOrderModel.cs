@@ -15,10 +15,8 @@ namespace Book_Haven__Application.Data.Models
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }
 
-        // Navigation Property
         public SupplierModel Supplier { get; set; }
 
-        // List of Purchase Order Details
         public List<PurchaseOrderDetailsModel> OrderDetails { get; set; } = new List<PurchaseOrderDetailsModel>();
     
 }

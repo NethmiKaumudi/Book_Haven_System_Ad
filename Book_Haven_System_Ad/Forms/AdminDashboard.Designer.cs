@@ -53,6 +53,8 @@
             btnDashboard = new Button();
             btnBooks = new Button();
             DashboardPanel = new Panel();
+            label7 = new Label();
+            tblSalesPerformance = new DataGridView();
             groupBox1 = new GroupBox();
             label6 = new Label();
             lblTodayTotalSales = new Label();
@@ -60,15 +62,15 @@
             checkedListBoxLawStock = new CheckedListBox();
             groupBox4 = new GroupBox();
             label5 = new Label();
-            lblBookCount = new Label();
+            lblBookTypesCount = new Label();
             groupBox3 = new GroupBox();
+            lblAdminCount = new Label();
+            lblSalesClerksCount = new Label();
             label3 = new Label();
             lblUserCount = new Label();
             groupBox2 = new GroupBox();
             label4 = new Label();
             lblCustomerCount = new Label();
-            tblSalesPerformance = new DataGridView();
-            label7 = new Label();
             ButtonPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
             ((System.ComponentModel.ISupportInitialize)picLogout).BeginInit();
@@ -81,11 +83,11 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             DashboardPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tblSalesPerformance).BeginInit();
             groupBox1.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tblSalesPerformance).BeginInit();
             SuspendLayout();
             // 
             // ButtonPanel
@@ -382,6 +384,27 @@
             DashboardPanel.Size = new Size(983, 662);
             DashboardPanel.TabIndex = 4;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.ForeColor = SystemColors.ActiveCaptionText;
+            label7.Location = new Point(535, 347);
+            label7.Name = "label7";
+            label7.Size = new Size(186, 28);
+            label7.TabIndex = 30;
+            label7.Text = "Sales Performance";
+            // 
+            // tblSalesPerformance
+            // 
+            tblSalesPerformance.BackgroundColor = SystemColors.ButtonFace;
+            tblSalesPerformance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            tblSalesPerformance.Location = new Point(535, 387);
+            tblSalesPerformance.Name = "tblSalesPerformance";
+            tblSalesPerformance.RowHeadersWidth = 51;
+            tblSalesPerformance.Size = new Size(408, 224);
+            tblSalesPerformance.TabIndex = 29;
+            // 
             // groupBox1
             // 
             groupBox1.BackColor = SystemColors.ButtonHighlight;
@@ -407,9 +430,11 @@
             // lblTodayTotalSales
             // 
             lblTodayTotalSales.AutoSize = true;
-            lblTodayTotalSales.Location = new Point(65, 64);
+            lblTodayTotalSales.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblTodayTotalSales.ForeColor = Color.MidnightBlue;
+            lblTodayTotalSales.Location = new Point(29, 66);
             lblTodayTotalSales.Name = "lblTodayTotalSales";
-            lblTodayTotalSales.Size = new Size(50, 20);
+            lblTodayTotalSales.Size = new Size(55, 23);
             lblTodayTotalSales.TabIndex = 1;
             lblTodayTotalSales.Text = "label3";
             // 
@@ -437,7 +462,7 @@
             // 
             groupBox4.BackColor = SystemColors.ButtonHighlight;
             groupBox4.Controls.Add(label5);
-            groupBox4.Controls.Add(lblBookCount);
+            groupBox4.Controls.Add(lblBookTypesCount);
             groupBox4.Location = new Point(665, 51);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(248, 132);
@@ -451,22 +476,26 @@
             label5.ForeColor = SystemColors.ActiveCaptionText;
             label5.Location = new Point(6, 11);
             label5.Name = "label5";
-            label5.Size = new Size(122, 28);
+            label5.Size = new Size(182, 28);
             label5.TabIndex = 28;
-            label5.Text = "Book Count";
+            label5.Text = "Book Types Count";
             // 
-            // lblBookCount
+            // lblBookTypesCount
             // 
-            lblBookCount.AutoSize = true;
-            lblBookCount.Location = new Point(94, 67);
-            lblBookCount.Name = "lblBookCount";
-            lblBookCount.Size = new Size(50, 20);
-            lblBookCount.TabIndex = 2;
-            lblBookCount.Text = "label3";
+            lblBookTypesCount.AutoSize = true;
+            lblBookTypesCount.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblBookTypesCount.ForeColor = Color.MidnightBlue;
+            lblBookTypesCount.Location = new Point(51, 56);
+            lblBookTypesCount.Name = "lblBookTypesCount";
+            lblBookTypesCount.Size = new Size(55, 23);
+            lblBookTypesCount.TabIndex = 2;
+            lblBookTypesCount.Text = "label3";
             // 
             // groupBox3
             // 
             groupBox3.BackColor = SystemColors.ButtonHighlight;
+            groupBox3.Controls.Add(lblAdminCount);
+            groupBox3.Controls.Add(lblSalesClerksCount);
             groupBox3.Controls.Add(label3);
             groupBox3.Controls.Add(lblUserCount);
             groupBox3.Location = new Point(70, 49);
@@ -474,6 +503,28 @@
             groupBox3.Size = new Size(248, 132);
             groupBox3.TabIndex = 2;
             groupBox3.TabStop = false;
+            // 
+            // lblAdminCount
+            // 
+            lblAdminCount.AutoSize = true;
+            lblAdminCount.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblAdminCount.ForeColor = Color.MidnightBlue;
+            lblAdminCount.Location = new Point(46, 69);
+            lblAdminCount.Name = "lblAdminCount";
+            lblAdminCount.Size = new Size(55, 23);
+            lblAdminCount.TabIndex = 28;
+            lblAdminCount.Text = "label3";
+            // 
+            // lblSalesClerksCount
+            // 
+            lblSalesClerksCount.AutoSize = true;
+            lblSalesClerksCount.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblSalesClerksCount.ForeColor = Color.MidnightBlue;
+            lblSalesClerksCount.Location = new Point(46, 97);
+            lblSalesClerksCount.Name = "lblSalesClerksCount";
+            lblSalesClerksCount.Size = new Size(55, 23);
+            lblSalesClerksCount.TabIndex = 27;
+            lblSalesClerksCount.Text = "label3";
             // 
             // label3
             // 
@@ -489,9 +540,11 @@
             // lblUserCount
             // 
             lblUserCount.AutoSize = true;
-            lblUserCount.Location = new Point(48, 72);
+            lblUserCount.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblUserCount.ForeColor = Color.MidnightBlue;
+            lblUserCount.Location = new Point(46, 44);
             lblUserCount.Name = "lblUserCount";
-            lblUserCount.Size = new Size(50, 20);
+            lblUserCount.Size = new Size(55, 23);
             lblUserCount.TabIndex = 0;
             lblUserCount.Text = "label3";
             // 
@@ -520,32 +573,13 @@
             // lblCustomerCount
             // 
             lblCustomerCount.AutoSize = true;
-            lblCustomerCount.Location = new Point(65, 64);
+            lblCustomerCount.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            lblCustomerCount.ForeColor = Color.MidnightBlue;
+            lblCustomerCount.Location = new Point(29, 57);
             lblCustomerCount.Name = "lblCustomerCount";
-            lblCustomerCount.Size = new Size(50, 20);
+            lblCustomerCount.Size = new Size(55, 23);
             lblCustomerCount.TabIndex = 1;
             lblCustomerCount.Text = "label3";
-            // 
-            // tblSalesPerformance
-            // 
-            tblSalesPerformance.BackgroundColor = SystemColors.ButtonFace;
-            tblSalesPerformance.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tblSalesPerformance.Location = new Point(535, 387);
-            tblSalesPerformance.Name = "tblSalesPerformance";
-            tblSalesPerformance.RowHeadersWidth = 51;
-            tblSalesPerformance.Size = new Size(408, 224);
-            tblSalesPerformance.TabIndex = 29;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.ForeColor = SystemColors.ActiveCaptionText;
-            label7.Location = new Point(535, 347);
-            label7.Name = "label7";
-            label7.Size = new Size(186, 28);
-            label7.TabIndex = 30;
-            label7.Text = "Sales Performance";
             // 
             // frmAdminDashboard
             // 
@@ -570,6 +604,7 @@
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             DashboardPanel.ResumeLayout(false);
             DashboardPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)tblSalesPerformance).EndInit();
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             groupBox4.ResumeLayout(false);
@@ -578,7 +613,6 @@
             groupBox3.PerformLayout();
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)tblSalesPerformance).EndInit();
             ResumeLayout(false);
         }
 
@@ -601,7 +635,7 @@
         private Label label6;
         private Label lblTodayTotalSales;
         private Label label5;
-        private Label lblBookCount;
+        private Label lblBookTypesCount;
         private Label label3;
         private Label label4;
         private PictureBox pictureBox6;
@@ -624,5 +658,7 @@
         private Button btnBooks;
         private Label label7;
         private DataGridView tblSalesPerformance;
+        private Label lblAdminCount;
+        private Label lblSalesClerksCount;
     }
 }

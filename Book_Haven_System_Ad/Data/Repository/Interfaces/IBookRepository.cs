@@ -16,5 +16,6 @@ namespace Book_Haven_System_Ad.Data.Repository.Interfaces
         BookModel GetBookById(Guid bookID);
         BookModel GetBookByName(string bookName);
         public List<BookModel> GetLowStockBooks();
+        int GetTotalTitleCount();
     }
 }

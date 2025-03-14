@@ -109,6 +109,10 @@ namespace Book_Haven__Application.Business.Services
                 return null;
             }
         }
+        public (int totalUserCount, Dictionary<string, int> roleWiseUserCount) GetUserCounts()
+        {
+            return _userRepository.GetUserCounts();
+        }
 
     }
 }

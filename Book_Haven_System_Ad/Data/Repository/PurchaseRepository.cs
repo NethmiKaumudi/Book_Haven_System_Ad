@@ -122,13 +122,11 @@ namespace Book_Haven_System_Ad.Data.Repository
             }
             catch (MySqlException ex)
             {
-                // Log the exception or handle it in a specific way (e.g., show an error message to the user)
                 Console.WriteLine($"MySQL error: {ex.Message}");
                 throw new Exception("An error occurred while retrieving purchase orders from the database.", ex);
             }
             catch (Exception ex)
             {
-                // Handle other general exceptions
                 Console.WriteLine($"An error occurred: {ex.Message}");
                 throw new Exception("An unexpected error occurred while retrieving purchase orders.", ex);
             }
@@ -145,7 +143,6 @@ namespace Book_Haven_System_Ad.Data.Repository
                 {
                     try
                     {
-                        // Update the purchaseorder status
                         string updateQuery = @"UPDATE purchaseorders 
                                        SET Status = @Status 
                                        WHERE PurchaseOrderID = @PurchaseOrderID";
@@ -157,7 +154,6 @@ namespace Book_Haven_System_Ad.Data.Repository
                             cmd.ExecuteNonQuery();
                         }
 
-                        // Commit transaction
                         transaction.Commit();
                         return true;
                     }

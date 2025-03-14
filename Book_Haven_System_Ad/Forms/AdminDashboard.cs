@@ -1,4 +1,6 @@
-﻿using Book_Haven__Application.Data.Models;
+﻿using Book_Haven__Application.Business.Interfaces;
+using Book_Haven__Application.Business.Services;
+using Book_Haven__Application.Data.Models;
 using Book_Haven_System_Ad.Business.Interfaces;
 using Book_Haven_System_Ad.Business.Services;
 using Book_Haven_System_Ad.Data.Models;
@@ -25,13 +27,19 @@ namespace Book_Haven_System_Ad.Forms
         public string Role { get; set; }
         private readonly IBookService bookService;
         private readonly IOrderService _orderService;
+        private readonly IUserService _userService;
 
+        private readonly ICustomerService _customerService;
+        private readonly IBookService _bookService;
 
         public frmAdminDashboard()
         {
             InitializeComponent();
             bookService = new BookService();
             _orderService = new OrderService();
+            _userService = new UserService();
+            _bookService = new BookService();
+            _customerService = new CustomerService();
             InitializeTimer();
 
             LoadLowStockBooks();
@@ -39,6 +47,10 @@ namespace Book_Haven_System_Ad.Forms
             tblSalesPerformance.Columns.Add("TotalSalesColumn", "Total Sales");
             LoadTodaySalesData();    
             LoadYesterdaySalesData();
+            LoadUserCount();
+            LoadTotalSalesForToday();
+            LoadBookCount();
+            LoadCustomerCount();
         }
       
         public void LoadTodaySalesData()
@@ -50,7 +62,79 @@ namespace Book_Haven_System_Ad.Forms
         {
             LoadSalesData(DateTime.Now.AddDays(-1)); 
         }
+        public void LoadUserCount()
+        {
+            try
+            {
+                (int totalUserCount, Dictionary<string, int> roleWiseUserCount) userCounts = _userService.GetUserCounts();
 
+                // Display total users
+                lblUserCount.Text = $"Total Users: {userCounts.totalUserCount}";
+
+                // Display total admins
+                if (userCounts.roleWiseUserCount.TryGetValue("Admin", out int adminCount))
+                {
+                    lblAdminCount.Text = $"Total Admins: {adminCount}";
+                }
+                else
+                {
+                    lblAdminCount.Text = "Total Admins: 0";
+                }
+
+                // Display total sales clerks
+                if (userCounts.roleWiseUserCount.TryGetValue("Sales Clerk", out int salesClerkCount))
+                {
+                    lblSalesClerksCount.Text = $"Total Sales Clerks: {salesClerkCount}";
+                }
+                else
+                {
+                    lblSalesClerksCount.Text = "Total Sales Clerks: 0";
+                }
+
+            
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading counts: {ex.Message}");
+            }
+        }
+        private void LoadTotalSalesForToday()
+        {
+            try
+            {
+                decimal totalSalesToday = _orderService.GetTotalSalesForToday();
+                lblTodayTotalSales.Text = $"Total Sales Today: {totalSalesToday:C}"; // Format as currency
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading total sales: {ex.Message}");
+            }
+        }
+        private void LoadBookCount()
+        {
+            try
+            {
+                int bookCount = _bookService.GetTotalTitleCount(); // Assuming _bookService is your service
+                lblBookTypesCount.Text = $"Total Books: {bookCount}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading book count: {ex.Message}");
+            }
+        }
+
+        private void LoadCustomerCount()
+        {
+            try
+            {
+                int customerCount = _customerService.GetCustomerCount(); // Assuming _customerService is your service
+                lblCustomerCount.Text = $"Total Customers: {customerCount}";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading customer count: {ex.Message}");
+            }
+        }
         public void LoadSalesData(DateTime date)
         {
             try

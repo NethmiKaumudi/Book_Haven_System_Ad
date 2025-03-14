@@ -195,7 +195,7 @@ namespace Book_Haven_System_Ad.Data.Repository
                 throw;
             }
 
-            return null; // Return null if no supplier is found
+            return null; 
         }
     }
 }

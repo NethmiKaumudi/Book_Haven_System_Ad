@@ -1,6 +1,6 @@
 ﻿namespace Book_Haven_System_Ad.Forms
 {
-    partial class frmSales
+    partial class frmSalesClarkSales
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSales));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSalesClarkSales));
             groupBox2 = new GroupBox();
             groupBox1 = new GroupBox();
             btnAddtoOrderCart = new Button();
@@ -73,45 +73,27 @@
             label16 = new Label();
             txtOrderUserName = new TextBox();
             label1 = new Label();
-            label2 = new Label();
-            lblusernameRole = new Label();
-            lbldate = new Label();
-            picLogout = new PictureBox();
             ButtonPanel = new Panel();
-            pictureBox6 = new PictureBox();
-            pictureBox4 = new PictureBox();
-            btnOrders = new Button();
-            btnReports = new Button();
-            pictureBox8 = new PictureBox();
-            pictureBox9 = new PictureBox();
-            btnSuppliers = new Button();
-            btnSalespos = new Button();
-            pictureBox3 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            btnCustomers = new Button();
-            btnUsers = new Button();
-            pictureBox7 = new PictureBox();
-            btnPO = new Button();
-            pictureBox2 = new PictureBox();
             pictureBox1 = new PictureBox();
+            pictureBox9 = new PictureBox();
+            picLogout = new PictureBox();
+            lbldate = new Label();
+            lblusernameRole = new Label();
+            label2 = new Label();
             btnDashboard = new Button();
-            btnBooks = new Button();
+            pictureBox5 = new PictureBox();
+            btnSalespos = new Button();
+            btnCustomers = new Button();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblOrderCart).BeginInit();
             groupBoxOnlineOrder.SuspendLayout();
             groupBoxPosOrders.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogout).BeginInit();
             ButtonPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogout).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
             SuspendLayout();
             // 
             // groupBox2
@@ -142,10 +124,10 @@
             groupBox2.Controls.Add(label16);
             groupBox2.Controls.Add(txtOrderUserName);
             groupBox2.Controls.Add(label1);
-            groupBox2.Location = new Point(347, -3);
+            groupBox2.Location = new Point(348, -3);
             groupBox2.Name = "groupBox2";
             groupBox2.Size = new Size(997, 714);
-            groupBox2.TabIndex = 9;
+            groupBox2.TabIndex = 11;
             groupBox2.TabStop = false;
             // 
             // groupBox1
@@ -179,7 +161,7 @@
             btnAddtoOrderCart.TabIndex = 71;
             btnAddtoOrderCart.Text = "Add to Cart";
             btnAddtoOrderCart.UseVisualStyleBackColor = false;
-            btnAddtoOrderCart.Click += btnAddtoOrderCart_Click_1;
+            btnAddtoOrderCart.Click += btnAddtoOrderCart_Click;
             // 
             // label14
             // 
@@ -284,7 +266,7 @@
             cmbOrderMethod.Name = "cmbOrderMethod";
             cmbOrderMethod.Size = new Size(151, 28);
             cmbOrderMethod.TabIndex = 112;
-            cmbOrderMethod.SelectedIndexChanged += cmbOrderMethod_SelectedIndexChanged_1;
+            cmbOrderMethod.SelectedIndexChanged += cmbOrderMethod_SelectedIndexChanged;
             // 
             // label3
             // 
@@ -613,36 +595,44 @@
             label1.Size = new Size(0, 23);
             label1.TabIndex = 57;
             // 
-            // label2
+            // ButtonPanel
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = SystemColors.ButtonHighlight;
-            label2.Location = new Point(24, 16);
-            label2.Name = "label2";
-            label2.Size = new Size(114, 28);
-            label2.TabIndex = 19;
-            label2.Text = "Dashboard";
+            ButtonPanel.BackColor = Color.DarkGreen;
+            ButtonPanel.Controls.Add(pictureBox1);
+            ButtonPanel.Controls.Add(pictureBox9);
+            ButtonPanel.Controls.Add(picLogout);
+            ButtonPanel.Controls.Add(lbldate);
+            ButtonPanel.Controls.Add(lblusernameRole);
+            ButtonPanel.Controls.Add(label2);
+            ButtonPanel.Controls.Add(btnDashboard);
+            ButtonPanel.Controls.Add(pictureBox5);
+            ButtonPanel.Controls.Add(btnSalespos);
+            ButtonPanel.Controls.Add(btnCustomers);
+            ButtonPanel.Location = new Point(-4, -3);
+            ButtonPanel.Name = "ButtonPanel";
+            ButtonPanel.Size = new Size(354, 710);
+            ButtonPanel.TabIndex = 12;
             // 
-            // lblusernameRole
+            // pictureBox1
             // 
-            lblusernameRole.AutoSize = true;
-            lblusernameRole.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lblusernameRole.ForeColor = SystemColors.ButtonFace;
-            lblusernameRole.Location = new Point(186, 21);
-            lblusernameRole.Name = "lblusernameRole";
-            lblusernameRole.Size = new Size(0, 23);
-            lblusernameRole.TabIndex = 20;
+            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox1.ErrorImage = (Image)resources.GetObject("pictureBox1.ErrorImage");
+            pictureBox1.Location = new Point(70, 218);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(37, 42);
+            pictureBox1.TabIndex = 83;
+            pictureBox1.TabStop = false;
             // 
-            // lbldate
+            // pictureBox9
             // 
-            lbldate.AutoSize = true;
-            lbldate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
-            lbldate.ForeColor = SystemColors.ButtonFace;
-            lbldate.Location = new Point(24, 57);
-            lbldate.Name = "lbldate";
-            lbldate.Size = new Size(0, 23);
-            lbldate.TabIndex = 21;
+            pictureBox9.BackgroundImage = (Image)resources.GetObject("pictureBox9.BackgroundImage");
+            pictureBox9.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox9.Location = new Point(70, 139);
+            pictureBox9.Name = "pictureBox9";
+            pictureBox9.Size = new Size(37, 42);
+            pictureBox9.TabIndex = 79;
+            pictureBox9.TabStop = false;
             // 
             // picLogout
             // 
@@ -657,206 +647,36 @@
             picLogout.TabStop = false;
             picLogout.Click += picLogout_Click;
             // 
-            // ButtonPanel
+            // lbldate
             // 
-            ButtonPanel.BackColor = Color.DarkGreen;
-            ButtonPanel.Controls.Add(pictureBox6);
-            ButtonPanel.Controls.Add(picLogout);
-            ButtonPanel.Controls.Add(pictureBox4);
-            ButtonPanel.Controls.Add(lbldate);
-            ButtonPanel.Controls.Add(btnOrders);
-            ButtonPanel.Controls.Add(lblusernameRole);
-            ButtonPanel.Controls.Add(btnReports);
-            ButtonPanel.Controls.Add(label2);
-            ButtonPanel.Controls.Add(pictureBox8);
-            ButtonPanel.Controls.Add(pictureBox9);
-            ButtonPanel.Controls.Add(btnSuppliers);
-            ButtonPanel.Controls.Add(btnSalespos);
-            ButtonPanel.Controls.Add(pictureBox3);
-            ButtonPanel.Controls.Add(pictureBox5);
-            ButtonPanel.Controls.Add(btnCustomers);
-            ButtonPanel.Controls.Add(btnUsers);
-            ButtonPanel.Controls.Add(pictureBox7);
-            ButtonPanel.Controls.Add(btnPO);
-            ButtonPanel.Controls.Add(pictureBox2);
-            ButtonPanel.Controls.Add(pictureBox1);
-            ButtonPanel.Controls.Add(btnDashboard);
-            ButtonPanel.Controls.Add(btnBooks);
-            ButtonPanel.Location = new Point(-2, -3);
-            ButtonPanel.Name = "ButtonPanel";
-            ButtonPanel.Size = new Size(348, 714);
-            ButtonPanel.TabIndex = 7;
+            lbldate.AutoSize = true;
+            lbldate.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            lbldate.ForeColor = SystemColors.ButtonFace;
+            lbldate.Location = new Point(24, 57);
+            lbldate.Name = "lbldate";
+            lbldate.Size = new Size(0, 23);
+            lbldate.TabIndex = 21;
             // 
-            // pictureBox6
+            // lblusernameRole
             // 
-            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
-            pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox6.ErrorImage = (Image)resources.GetObject("pictureBox6.ErrorImage");
-            pictureBox6.Location = new Point(67, 312);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(37, 42);
-            pictureBox6.TabIndex = 65;
-            pictureBox6.TabStop = false;
+            lblusernameRole.AutoSize = true;
+            lblusernameRole.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold);
+            lblusernameRole.ForeColor = SystemColors.ButtonFace;
+            lblusernameRole.Location = new Point(186, 21);
+            lblusernameRole.Name = "lblusernameRole";
+            lblusernameRole.Size = new Size(0, 23);
+            lblusernameRole.TabIndex = 20;
             // 
-            // pictureBox4
+            // label2
             // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(67, 420);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(37, 42);
-            pictureBox4.TabIndex = 64;
-            pictureBox4.TabStop = false;
-            // 
-            // btnOrders
-            // 
-            btnOrders.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOrders.ImageAlign = ContentAlignment.MiddleLeft;
-            btnOrders.Location = new Point(135, 427);
-            btnOrders.Name = "btnOrders";
-            btnOrders.Size = new Size(157, 32);
-            btnOrders.TabIndex = 63;
-            btnOrders.Text = "Sales Details";
-            btnOrders.UseVisualStyleBackColor = true;
-            // 
-            // btnReports
-            // 
-            btnReports.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReports.Location = new Point(135, 596);
-            btnReports.Name = "btnReports";
-            btnReports.Size = new Size(157, 32);
-            btnReports.TabIndex = 61;
-            btnReports.Text = "Reports";
-            btnReports.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox8
-            // 
-            pictureBox8.BackgroundImage = (Image)resources.GetObject("pictureBox8.BackgroundImage");
-            pictureBox8.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox8.Location = new Point(67, 589);
-            pictureBox8.Name = "pictureBox8";
-            pictureBox8.Size = new Size(37, 42);
-            pictureBox8.TabIndex = 62;
-            pictureBox8.TabStop = false;
-            // 
-            // pictureBox9
-            // 
-            pictureBox9.BackgroundImage = (Image)resources.GetObject("pictureBox9.BackgroundImage");
-            pictureBox9.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox9.Location = new Point(67, 145);
-            pictureBox9.Name = "pictureBox9";
-            pictureBox9.Size = new Size(37, 42);
-            pictureBox9.TabIndex = 60;
-            pictureBox9.TabStop = false;
-            // 
-            // btnSuppliers
-            // 
-            btnSuppliers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSuppliers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSuppliers.Location = new Point(135, 488);
-            btnSuppliers.Name = "btnSuppliers";
-            btnSuppliers.Size = new Size(157, 32);
-            btnSuppliers.TabIndex = 54;
-            btnSuppliers.Text = "Suppliers";
-            btnSuppliers.UseVisualStyleBackColor = true;
-            // 
-            // btnSalespos
-            // 
-            btnSalespos.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalespos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalespos.Location = new Point(135, 376);
-            btnSalespos.Name = "btnSalespos";
-            btnSalespos.Size = new Size(157, 32);
-            btnSalespos.TabIndex = 56;
-            btnSalespos.Text = "Sales(POS)";
-            btnSalespos.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(67, 366);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(37, 42);
-            pictureBox3.TabIndex = 53;
-            pictureBox3.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
-            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox5.ErrorImage = (Image)resources.GetObject("pictureBox5.ErrorImage");
-            pictureBox5.Location = new Point(67, 481);
-            pictureBox5.Name = "pictureBox5";
-            pictureBox5.Size = new Size(37, 42);
-            pictureBox5.TabIndex = 55;
-            pictureBox5.TabStop = false;
-            // 
-            // btnCustomers
-            // 
-            btnCustomers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCustomers.Location = new Point(135, 321);
-            btnCustomers.Name = "btnCustomers";
-            btnCustomers.Size = new Size(157, 32);
-            btnCustomers.TabIndex = 52;
-            btnCustomers.Text = "Customers";
-            btnCustomers.UseVisualStyleBackColor = true;
-            // 
-            // btnUsers
-            // 
-            btnUsers.BackColor = Color.Transparent;
-            btnUsers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnUsers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnUsers.Location = new Point(135, 208);
-            btnUsers.Name = "btnUsers";
-            btnUsers.Size = new Size(157, 32);
-            btnUsers.TabIndex = 48;
-            btnUsers.Text = "Users";
-            btnUsers.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
-            pictureBox7.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox7.Location = new Point(67, 536);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(37, 42);
-            pictureBox7.TabIndex = 58;
-            pictureBox7.TabStop = false;
-            // 
-            // btnPO
-            // 
-            btnPO.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnPO.ImageAlign = ContentAlignment.MiddleLeft;
-            btnPO.Location = new Point(135, 546);
-            btnPO.Name = "btnPO";
-            btnPO.Size = new Size(157, 32);
-            btnPO.TabIndex = 57;
-            btnPO.Text = "Purchase Stock";
-            btnPO.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(67, 254);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(37, 42);
-            pictureBox2.TabIndex = 51;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.BackgroundImage = (Image)resources.GetObject("pictureBox1.BackgroundImage");
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(67, 201);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(37, 42);
-            pictureBox1.TabIndex = 49;
-            pictureBox1.TabStop = false;
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label2.ForeColor = SystemColors.ButtonHighlight;
+            label2.Location = new Point(24, 16);
+            label2.Name = "label2";
+            label2.Size = new Size(114, 28);
+            label2.TabIndex = 19;
+            label2.Text = "Dashboard";
             // 
             // btnDashboard
             // 
@@ -864,34 +684,58 @@
             btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(135, 152);
+            btnDashboard.Location = new Point(138, 147);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Size = new Size(157, 32);
-            btnDashboard.TabIndex = 59;
+            btnDashboard.TabIndex = 39;
             btnDashboard.Text = "Dasboard";
             btnDashboard.UseVisualStyleBackColor = false;
             btnDashboard.Click += btnDashboard_Click;
             // 
-            // btnBooks
+            // pictureBox5
             // 
-            btnBooks.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBooks.ImageAlign = ContentAlignment.MiddleLeft;
-            btnBooks.Location = new Point(135, 261);
-            btnBooks.Name = "btnBooks";
-            btnBooks.Size = new Size(157, 32);
-            btnBooks.TabIndex = 50;
-            btnBooks.Text = "Books";
-            btnBooks.UseVisualStyleBackColor = true;
+            pictureBox5.BackgroundImage = (Image)resources.GetObject("pictureBox5.BackgroundImage");
+            pictureBox5.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox5.Location = new Point(70, 297);
+            pictureBox5.Name = "pictureBox5";
+            pictureBox5.Size = new Size(37, 42);
+            pictureBox5.TabIndex = 71;
+            pictureBox5.TabStop = false;
             // 
-            // frmSales
+            // btnSalespos
+            // 
+            btnSalespos.BackColor = Color.White;
+            btnSalespos.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalespos.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSalespos.Location = new Point(138, 297);
+            btnSalespos.Name = "btnSalespos";
+            btnSalespos.Size = new Size(157, 32);
+            btnSalespos.TabIndex = 35;
+            btnSalespos.Text = "Sales(Pos)";
+            btnSalespos.UseVisualStyleBackColor = false;
+            btnSalespos.Click += btnSalespos_Click;
+            // 
+            // btnCustomers
+            // 
+            btnCustomers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCustomers.Location = new Point(138, 218);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Size = new Size(157, 32);
+            btnCustomers.TabIndex = 29;
+            btnCustomers.Text = "Customers";
+            btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.Click += btnCustomers_Click;
+            // 
+            // frmSalesClarkSales
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1344, 709);
-            Controls.Add(groupBox2);
             Controls.Add(ButtonPanel);
-            Name = "frmSales";
-            Text = "SalesForm";
+            Controls.Add(groupBox2);
+            Name = "frmSalesClarkSales";
+            Text = "frmSalesClarkSales";
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             groupBox1.ResumeLayout(false);
@@ -901,33 +745,42 @@
             groupBoxOnlineOrder.PerformLayout();
             groupBoxPosOrders.ResumeLayout(false);
             groupBoxPosOrders.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogout).EndInit();
             ButtonPanel.ResumeLayout(false);
             ButtonPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogout).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
+
         private GroupBox groupBox2;
+        private GroupBox groupBox1;
+        private Button btnAddtoOrderCart;
+        private Label label14;
+        private TextBox txtOrderQty;
+        private Label label15;
+        private TextBox txtPrize;
+        private Label label17;
+        private Label label18;
+        private TextBox txtAuthor;
+        private TextBox txtBookName;
+        private DataGridView tblOrderCart;
+        private ComboBox cmbOrderMethod;
+        private Label label3;
+        private GroupBox groupBoxOnlineOrder;
+        private Label label4;
+        private ComboBox cmbDeliveryType;
+        private TextBox txtDeliveryAddress;
+        private Label label35;
         private GroupBox groupBoxPosOrders;
-        private RadioButton radioButton1;
-        private RadioButton radioButton2;
+        private TextBox txtAmountPaid;
         private Label label22;
         private Label label23;
-        private TextBox textBox8;
         private TextBox txtChange;
         private Label label36;
-        private RadioButton rbOnline;
-        private RadioButton rbPos;
         private Label label33;
         private TextBox txtOrderId;
         private TextBox txtSubTotal;
@@ -947,47 +800,16 @@
         private Label label16;
         private TextBox txtOrderUserName;
         private Label label1;
-        private Label label3;
-        private ComboBox cmbOrderMethod;
-        private GroupBox groupBox1;
-        private Button btnAddtoOrderCart;
-        private Label label14;
-        private TextBox txtOrderQty;
-        private Label label15;
-        private TextBox txtPrize;
-        private Label label17;
-        private Label label18;
-        private TextBox txtAuthor;
-        private TextBox txtBookName;
-        private DataGridView tblOrderCart;
-        private GroupBox groupBoxOnlineOrder;
-        private TextBox txtDeliveryAddress;
-        private Label label35;
-        private TextBox txtAmountPaid;
-        private Label label4;
-        private ComboBox cmbDeliveryType;
-        private Label label2;
-        private Label lblusernameRole;
-        private Label lbldate;
-        private PictureBox picLogout;
         private Panel ButtonPanel;
-        private PictureBox pictureBox6;
-        private PictureBox pictureBox4;
-        private Button btnOrders;
-        private Button btnReports;
-        private PictureBox pictureBox8;
-        private PictureBox pictureBox9;
-        private Button btnSuppliers;
-        private Button btnSalespos;
-        private PictureBox pictureBox3;
-        private PictureBox pictureBox5;
-        private Button btnCustomers;
-        private Button btnUsers;
-        private PictureBox pictureBox7;
-        private Button btnPO;
-        private PictureBox pictureBox2;
         private PictureBox pictureBox1;
+        private PictureBox pictureBox9;
+        private PictureBox picLogout;
+        private Label lbldate;
+        private Label lblusernameRole;
+        private Label label2;
         private Button btnDashboard;
-        private Button btnBooks;
+        private PictureBox pictureBox5;
+        private Button btnSalespos;
+        private Button btnCustomers;
     }
 }

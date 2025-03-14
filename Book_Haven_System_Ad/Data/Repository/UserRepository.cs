@@ -215,5 +215,36 @@ namespace Book_Haven__Application.Data.Repository
                 }
             }
         }
+
+        public (int totalUserCount, Dictionary<string, int> roleWiseUserCount) GetUserCounts()
+        {
+            int totalUserCount = 0;
+            var roleWiseUserCount = new Dictionary<string, int>();
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+
+                // Get total user count
+                string totalQuery = "SELECT COUNT(*) FROM Users WHERE IsDeleted = 0";
+                var totalCommand = new MySqlCommand(totalQuery, connection);
+                var result = totalCommand.ExecuteScalar();
+                totalUserCount = Convert.ToInt32(result);
+
+                // Get role-wise user count
+                string roleQuery = "SELECT Role, COUNT(*) AS UserCount FROM Users WHERE IsDeleted = 0 GROUP BY Role";
+                var roleCommand = new MySqlCommand(roleQuery, connection);
+                var reader = roleCommand.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    var role = reader["Role"].ToString();
+                    var count = Convert.ToInt32(reader["UserCount"]);
+                    roleWiseUserCount.Add(role, count);
+                }
+            }
+
+            return (totalUserCount, roleWiseUserCount);
+        }
     }
 }

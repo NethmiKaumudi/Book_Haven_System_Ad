@@ -107,14 +107,22 @@ namespace Book_Haven_System_Ad.Forms
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            NavigationHelper.OpenForm(this, new frmCustomerForm());
+            NavigationHelper.OpenForm(this, new frmSalesClearkCustomer());
 
         }
 
         private void btnSalespos_Click(object sender, EventArgs e)
         {
-            NavigationHelper.OpenForm(this, new frmSales(Username));
+            NavigationHelper.OpenForm(this, new frmSalesClarkSales(Username));
 
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            SalesClearkDashboard adminDashboard = new SalesClearkDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.Show();
+            this.Hide();
         }
     }
 }

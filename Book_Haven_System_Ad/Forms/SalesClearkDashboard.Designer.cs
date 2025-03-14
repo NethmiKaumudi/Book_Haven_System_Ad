@@ -133,6 +133,7 @@
             btnDashboard.TabIndex = 39;
             btnDashboard.Text = "Dasboard";
             btnDashboard.UseVisualStyleBackColor = false;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // label2
             // 

@@ -16,10 +16,8 @@ namespace Book_Haven__Application.Data.Models
         public bool IsDeleted { get; set; }
 
 
-        // List of Books this Supplier provides
         public List<BookModel> BooksSupplied { get; set; } = new List<BookModel>();
 
-        // List of Purchase Orders from this Supplier
         public List<PurchaseOrderModel> PurchaseOrders { get; set; } = new List<PurchaseOrderModel>();
 
 

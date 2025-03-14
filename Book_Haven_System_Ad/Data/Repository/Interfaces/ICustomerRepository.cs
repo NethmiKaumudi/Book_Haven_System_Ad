@@ -18,6 +18,6 @@ namespace Book_Haven_System_Ad.Data.Repository.Interfaces
         
         CustomerModel GetCustomerDetailsByNumber(string customerNumber);
 
-
+        int GetCustomerCount();
     }
 }

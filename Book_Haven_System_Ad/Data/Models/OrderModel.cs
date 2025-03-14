@@ -8,8 +8,8 @@ namespace Book_Haven__Application.Data.Models
 {
     internal class OrderModel
     {
-        public string OrderID { get; set; }  // Primary Key for Order
-        public Guid CustomerID { get; set; }  // Foreign Key: Customer
+        public string OrderID { get; set; }  
+        public Guid CustomerID { get; set; }  
 
         public decimal TotalAmount { get; set; }
         public string Status { get; set; }  // 'Pending', 'Shipped', 'Delivered', 'Canceled'
@@ -23,8 +23,8 @@ namespace Book_Haven__Application.Data.Models
 
         public string OrderSource { get; set; }  // 'Online' or 'POS'
 
-        //public UserModel User { get; set; }  // Navigation Property
-        public CustomerModel Customer { get; set; }  // Navigation Property
+      
+        public CustomerModel Customer { get; set; }  
         public List<OrderDetailsModel> OrderDetails { get; set; }
     }
 }

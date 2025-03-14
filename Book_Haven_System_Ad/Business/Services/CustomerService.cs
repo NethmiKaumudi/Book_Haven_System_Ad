@@ -40,7 +40,6 @@ namespace Book_Haven_System_Ad.Business.Services
         }
         public CustomerModel GetCustomerById(Guid customerId)
         {
-            // Call the repository method to get the customer by ID
             var customer = _customerRepo.GetCustomerById(customerId);
 
             if (customer == null)
@@ -53,6 +52,10 @@ namespace Book_Haven_System_Ad.Business.Services
         public CustomerModel GetCustomerDetailsByNumber(string customerNumber)
         {
             return _customerRepo.GetCustomerDetailsByNumber(customerNumber);
+        }
+        public int GetCustomerCount()
+        {
+            return _customerRepo.GetCustomerCount();    
         }
     }
 }

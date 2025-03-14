@@ -222,5 +222,27 @@ namespace Book_Haven_System_Ad.Data.Repository
                 }
             }
         }
+        public int GetCustomerCount()
+        {
+            int customerCount = 0;
+
+            string query = "SELECT COUNT(*) FROM Customers WHERE IsDeleted = 0"; 
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        customerCount = Convert.ToInt32(result);
+                    }
+                }
+            }
+
+            return customerCount;
+        }
     }
 }

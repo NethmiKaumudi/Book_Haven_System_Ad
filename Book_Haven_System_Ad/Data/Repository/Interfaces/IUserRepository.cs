@@ -19,6 +19,8 @@ namespace Book_Haven_System_Ad.Data.Repository.Interfaces
         public void UpdateUserByUsername(string newUsername, string passwordHash, string role);
 
         UserModel GetUserByName(string username);
+        (int totalUserCount, Dictionary<string, int> roleWiseUserCount) GetUserCounts();
+
 
     }
 }

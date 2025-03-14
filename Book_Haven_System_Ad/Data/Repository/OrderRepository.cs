@@ -14,104 +14,7 @@ namespace Book_Haven_System_Ad.Data.Repository
     {
         private readonly string connectionString = "Server=localhost;Database=bookhaven;Uid=root;Pwd=1234;";
 
-        //public void AddOrder(OrderModel order, List<OrderDetailsModel> orderDetails)
-        //{
-        //    using (var connection = new MySqlConnection(connectionString))
-        //    {
-        //        connection.Open();
-        //        var transaction = connection.BeginTransaction();
-
-        //        try
-        //        {
-        //            // Insert order into the orders table
-        //            var orderCommand = new MySqlCommand(
-        //                "INSERT INTO orders (OrderID, CustomerID, TotalAmount, Status, DeliveryType, DeliveryStatus, DeliveryAddress, OrderDate, ProcessedBy, IsDeleted, OrderSource) " +
-        //                "VALUES (@OrderID, @CustomerID, @TotalAmount, @Status, @DeliveryType, @DeliveryStatus, @DeliveryAddress, @OrderDate, @ProcessedBy, @IsDeleted, @OrderSource)",
-        //                connection, transaction);
-
-        //            orderCommand.Parameters.AddWithValue("@OrderID", order.OrderID);
-        //            orderCommand.Parameters.AddWithValue("@CustomerID", order.CustomerID);
-        //            orderCommand.Parameters.AddWithValue("@TotalAmount", order.TotalAmount);
-        //            orderCommand.Parameters.AddWithValue("@Status", order.Status ?? "Pending");
-        //            orderCommand.Parameters.AddWithValue("@DeliveryType", order.DeliveryType);
-        //            orderCommand.Parameters.AddWithValue("@DeliveryStatus", order.DeliveryStatus ?? "Not Applicable");
-        //            orderCommand.Parameters.AddWithValue("@DeliveryAddress", order.DeliveryAddress);
-        //            orderCommand.Parameters.AddWithValue("@OrderDate", order.OrderDate);
-        //            orderCommand.Parameters.AddWithValue("@ProcessedBy", order.ProcessedBy);
-        //            orderCommand.Parameters.AddWithValue("@IsDeleted", order.IsDeleted);
-        //            orderCommand.Parameters.AddWithValue("@OrderSource", order.OrderSource ?? "Online");
-
-        //            orderCommand.ExecuteNonQuery();
-
-        //            // Now add the order details (ordered books) and update book quantities
-        //            foreach (var orderDetail in orderDetails)
-        //            {
-        //                // Insert the order detail
-        //                var orderDetailCommand = new MySqlCommand(
-        //                    "INSERT INTO orderdetails (OrderDetailID, OrderID, BookID, Quantity, Price) " +
-        //                    "VALUES (@OrderDetailID, @OrderID, @BookID, @Quantity, @Price)",
-        //                    connection, transaction);
-
-        //                orderDetailCommand.Parameters.AddWithValue("@OrderDetailID", orderDetail.OrderDetailID);
-        //                orderDetailCommand.Parameters.AddWithValue("@OrderID", orderDetail.OrderId);
-        //                orderDetailCommand.Parameters.AddWithValue("@BookID", orderDetail.BookID);
-        //                orderDetailCommand.Parameters.AddWithValue("@Quantity", orderDetail.Quantity);
-        //                orderDetailCommand.Parameters.AddWithValue("@Price", orderDetail.Price);
-
-        //                orderDetailCommand.ExecuteNonQuery();
-
-        //                // Find the book being ordered
-        //                var bookCommand = new MySqlCommand(
-        //                    "SELECT Stock FROM books WHERE BookID = @BookID",
-        //                    connection, transaction);
-        //                bookCommand.Parameters.AddWithValue("@BookID", orderDetail.BookID);
-
-        //                var bookReader = bookCommand.ExecuteReader();
-        //                if (bookReader.Read())
-        //                {
-        //                    var availableQuantity = bookReader.GetInt32("Stock");
-
-        //                    // Update the book quantity
-        //                    if (availableQuantity >= orderDetail.Quantity)
-        //                    {
-        //                        var updateBookCommand = new MySqlCommand(
-        //                            "UPDATE books SET Stock = Stock - @Quantity WHERE BookID = @BookID", // Changed "Quantity" to "Stock"
-        //                            connection, transaction);
-        //                        updateBookCommand.Parameters.AddWithValue("@Quantity", orderDetail.Quantity);
-        //                        updateBookCommand.Parameters.AddWithValue("@BookID", orderDetail.BookID);
-
-        //                        updateBookCommand.ExecuteNonQuery();
-        //                    }
-        //                    else
-        //                    {
-        //                        MessageBox.Show($"Not enough stock for book with ID {orderDetail.BookID}");
-        //                        transaction.Rollback();
-        //                        return; // If not enough stock, rollback the transaction
-        //                    }
-        //                    bookReader.Close();
-
-        //                }
-        //                else
-        //                {
-        //                    MessageBox.Show($"Book with ID {orderDetail.BookID} not found.");
-        //                    transaction.Rollback();
-        //                    return; // If the book is not found, rollback the transaction
-        //                }
-
-        //            }
-
-        //            // Commit the transaction if all went well
-        //            transaction.Commit();
-        //            MessageBox.Show("Order added successfully!");
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            // Rollback the transaction in case of an error
-        //            transaction.Rollback();
-        //            MessageBox.Show($"Error saving order: {ex.Message}");
-        //        }
-        //    }
-        //}
+        
         public void AddOrder(OrderModel order, List<OrderDetailsModel> orderDetails)
         {
             using (var connection = new MySqlConnection(connectionString))
@@ -141,10 +44,8 @@ namespace Book_Haven_System_Ad.Data.Repository
 
                     orderCommand.ExecuteNonQuery();
 
-                    // Now add the order details (ordered books) and update book quantities
                     foreach (var orderDetail in orderDetails)
                     {
-                        // Insert the order detail
                         var orderDetailCommand = new MySqlCommand(
                             "INSERT INTO orderdetails (OrderDetailID, OrderID, BookID, Quantity, Price) " +
                             "VALUES (@OrderDetailID, @OrderID, @BookID, @Quantity, @Price)",
@@ -158,7 +59,6 @@ namespace Book_Haven_System_Ad.Data.Repository
 
                         orderDetailCommand.ExecuteNonQuery();
 
-                        // Find the book being ordered and update stock
                         var bookCommand = new MySqlCommand(
                             "SELECT Stock FROM books WHERE BookID = @BookID",
                             connection, transaction);
@@ -170,7 +70,6 @@ namespace Book_Haven_System_Ad.Data.Repository
                         {
                             var availableQuantity = Convert.ToInt32(stockResult);
 
-                            // Update the book quantity
                             if (availableQuantity >= orderDetail.Quantity)
                             {
                                 var updateBookCommand = new MySqlCommand(
@@ -185,24 +84,23 @@ namespace Book_Haven_System_Ad.Data.Repository
                             {
                                 MessageBox.Show($"Not enough stock for book with ID {orderDetail.BookID}");
                                 transaction.Rollback();
-                                return; // If not enough stock, rollback the transaction
+                                return; 
                             }
                         }
                         else
                         {
                             MessageBox.Show($"Book with ID {orderDetail.BookID} not found.");
                             transaction.Rollback();
-                            return; // If the book is not found, rollback the transaction
+                            return; 
                         }
                     }
 
-                    // Commit the transaction if all went well
+                    
                     transaction.Commit();
                     MessageBox.Show("Order added successfully!");
                 }
                 catch (Exception ex)
                 {
-                    // Rollback the transaction in case of an error
                     transaction.Rollback();
                     MessageBox.Show($"Error saving order: {ex.Message}");
                 }
@@ -484,7 +382,7 @@ WHERE o.IsDeleted = 0;
 
                 using (var command = new MySqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@OrderDate", date.Date); // Use date.Date to remove time portion
+                    command.Parameters.AddWithValue("@OrderDate", date.Date); 
 
                     using (var reader = command.ExecuteReader())
                     {
@@ -503,5 +401,35 @@ WHERE o.IsDeleted = 0;
             return result;
         }
 
+        public decimal GetTotalSalesForToday()
+        {
+            decimal totalSales = 0;
+            DateTime today = DateTime.Today;
+            DateTime tomorrow = today.AddDays(1);
+
+            string query = @"
+        SELECT SUM(od.Quantity * od.Price)
+        FROM orders o
+        JOIN orderdetails od ON o.OrderID = od.OrderID
+        WHERE o.OrderDate >= @Today AND o.OrderDate < @Tomorrow AND o.IsDeleted = 0;";
+
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@Today", today);
+                    command.Parameters.AddWithValue("@Tomorrow", tomorrow);
+
+                    connection.Open();
+                    object result = command.ExecuteScalar();
+
+                    if (result != null && result != DBNull.Value)
+                    {
+                        totalSales = Convert.ToDecimal(result);
+                    }
+                }
+            }
+            return totalSales;
+        }
     }
 }

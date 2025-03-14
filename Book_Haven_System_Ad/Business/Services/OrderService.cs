@@ -23,19 +23,18 @@ namespace Book_Haven_System_Ad.Business.Services
 
         public string GenerateOrderId()
         {
-            string lastOrderId = _orderRepository.GetLastOrderId(); // Fetch last order ID
+            string lastOrderId = _orderRepository.GetLastOrderId(); 
 
-            int nextNumber = 1; // Default if no previous orders exist
+            int nextNumber = 1; 
             if (!string.IsNullOrEmpty(lastOrderId) && lastOrderId.StartsWith("OR-"))
             {
-                string numberPart = lastOrderId.Substring(3); // Extract "0001"
+                string numberPart = lastOrderId.Substring(3); //  "0001"
                 if (int.TryParse(numberPart, out int lastNumber))
                 {
                     nextNumber = lastNumber + 1;
                 }
             }
 
-            // Return formatted Order ID
             return $"OR-{nextNumber:D4}";
         }
         public void AddOrder(OrderModel order, List<OrderDetailsModel> orderDetails)
@@ -67,6 +66,11 @@ namespace Book_Haven_System_Ad.Business.Services
         public List<OrderSalesData> GetSalesByProcessedBy(DateTime date)
         {
             return _orderRepository.GetSalesByProcessedBy( date);
+     
+        }
+        public decimal GetTotalSalesForToday()
+        {
+            return _orderRepository.GetTotalSalesForToday();
         }
     }
 }

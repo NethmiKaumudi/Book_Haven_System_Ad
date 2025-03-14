@@ -3,9 +3,6 @@ using Book_Haven__Application.Business.Services;
 using Book_Haven__Application.Data.Models;
 using Book_Haven_System_Ad.Business.Interfaces;
 using Book_Haven_System_Ad.Business.Services;
-using Book_Haven_System_Ad.Data.Repository;
-using Mysqlx.Crud;
-using Org.BouncyCastle.Asn1.Cmp;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +12,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Book_Haven_System_Ad.Forms
 {
-    public partial class frmSales : Form
+    public partial class frmSalesClarkSales : Form
     {
         private readonly IOrderService _orderService;
         private string _loggedInUser;
@@ -28,10 +25,11 @@ namespace Book_Haven_System_Ad.Forms
         private readonly IUserService _userService;
         private Guid _selectedBookId = Guid.Empty; // Default to an empty GUID
         private Guid customerId = Guid.Empty; // Declare a local variable to hold CustomerID
+
         public string Username { get; set; }
         public string Role { get; set; }
 
-        public frmSales(string loggedInUser)
+        public frmSalesClarkSales(string loggedInUser)
         {
             InitializeComponent();
             _orderService = new OrderService();
@@ -57,7 +55,6 @@ namespace Book_Haven_System_Ad.Forms
             cmbDiscount.Items.Add("20");
 
             cmbDiscount.SelectedIndex = 0; // Set default selection to 0%
-
         }
 
         private void SetupDataGridView()
@@ -118,6 +115,7 @@ namespace Book_Haven_System_Ad.Forms
             txtSubTotal.Text = "Total Amount: " + totalAmount.ToString("0.00");
             return totalAmount;
         }
+
 
         private void btnAddNewCustomer_Click(object sender, EventArgs e)
         {
@@ -202,44 +200,7 @@ namespace Book_Haven_System_Ad.Forms
                 e.SuppressKeyPress = true;
             }
         }
-
-
-        private void cmbOrderMethod_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (cmbOrderMethod.SelectedItem != null)
-            {
-                string selectedMethod = cmbOrderMethod.SelectedItem.ToString();
-
-                if (selectedMethod == "POS")
-                {
-                    groupBoxOnlineOrder.Visible = false; // Hide the combo box if POS is selected
-                }
-                else if (selectedMethod == "Online")
-                {
-                    groupBoxOnlineOrder.Visible = true; // Show the combo box if Online is selected
-                    groupBoxPosOrders.Visible = false;
-                }
-            }
-        }
-
-        private void cmbDiscount_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (cmbDiscount.SelectedItem != null)
-            {
-                // Get the subtotal directly from the CalculateSubTotalAmount() method
-                decimal subTotal = CalculateSubTotalAmount();
-
-                if (int.TryParse(cmbDiscount.SelectedItem.ToString(), out int discountPercentage))
-                {
-                    decimal discountAmount = (subTotal * discountPercentage) / 100;
-                    decimal total = subTotal - discountAmount;
-
-                    txtOrderTotal.Text = total.ToString("F2"); // Update txtOrderTotal
-                }
-            }
-        }
-
-        private void btnAddtoOrderCart_Click_1(object sender, EventArgs e)
+        private void btnAddtoOrderCart_Click(object sender, EventArgs e)
         {
             // Retrieve values from the text fields
             string bookName = txtBookName.Text.Trim();
@@ -291,57 +252,6 @@ namespace Book_Haven_System_Ad.Forms
             // Recalculate total amount after adding the book
             CalculateSubTotalAmount();
         }
-
-        private void tblOrderCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            {
-                // Check if the clicked column is the 'Remove' column
-                if (e.ColumnIndex == tblOrderCart.Columns["Remove"].Index && e.RowIndex >= 0)
-                {
-                    try
-                    {
-                        // Remove the selected row
-                        tblOrderCart.Rows.RemoveAt(e.RowIndex);
-
-                        // Recalculate the total amount after removal
-                        CalculateSubTotalAmount();
-                    }
-                    catch (InvalidOperationException ex)
-                    {
-                        // Optionally, show a message if the row removal fails
-                        MessageBox.Show("Cannot remove the new row.", "Error");
-                    }
-                }
-                else if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // For all other columns
-                {
-                    // Get the selected row
-                    DataGridViewRow selectedRow = tblOrderCart.Rows[e.RowIndex];
-
-                    // Populate the text fields with values from the selected row
-                    txtBookName.Text = selectedRow.Cells["BookName"].Value?.ToString() ?? "";
-                    txtAuthor.Text = selectedRow.Cells["Author"].Value?.ToString() ?? "";
-                    txtPrize.Text = selectedRow.Cells["Price"].Value?.ToString() ?? "";
-
-                    // Clear the txtQuantity field to allow the user to input a new quantity
-                    txtOrderQty.Clear();
-                }
-            }
-        }
-
-        private void txtAmountPaid_TextChanged(object sender, EventArgs e)
-        {
-            if (decimal.TryParse(txtOrderTotal.Text, out decimal orderTotal) && decimal.TryParse(txtAmountPaid.Text, out decimal amountPaid))
-            {
-                decimal change = amountPaid - orderTotal;
-                txtChange.Text = change.ToString("F2"); // Format to 2 decimal places
-            }
-            else
-            {
-                txtChange.Text = "0.00"; // Default to 0 if input is invalid
-            }
-
-        }
-
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
@@ -482,7 +392,8 @@ namespace Book_Haven_System_Ad.Forms
 
             // Total
             receipt.AppendLine();
-            receipt.AppendLine($"Total: {order.TotalAmount,25:C}");
+            receipt.AppendLine($"Total: {order.TotalAmount,25:C}"); // Right-align total
+            receipt.AppendLine();
 
             // Footer
             receipt.AppendLine("===============================");
@@ -490,17 +401,145 @@ namespace Book_Haven_System_Ad.Forms
             receipt.AppendLine("          Purchase!          ");
             receipt.AppendLine("===============================");
 
+            // Display the receipt (replace with actual printing logic)
             MessageBox.Show(receipt.ToString(), "Receipt", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
         }
-
         private void ClearOrderForm()
         {
             txtCustomerNumber.Clear();
             txtCustomerName.Clear();
             txtOrderTotal.Clear();
             tblOrderCart.Rows.Clear();
+        }
+
+        private void cmbOrderMethod_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbOrderMethod.SelectedItem != null)
+            {
+                string selectedMethod = cmbOrderMethod.SelectedItem.ToString();
+
+                if (selectedMethod == "POS")
+                {
+                    groupBoxOnlineOrder.Visible = false; // Hide the combo box if POS is selected
+                }
+                else if (selectedMethod == "Online")
+                {
+                    groupBoxOnlineOrder.Visible = true; // Show the combo box if Online is selected
+                    groupBoxPosOrders.Visible = false;
+                }
+            }
+        }
+
+
+        private void tblOrderCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            {
+                // Check if the clicked column is the 'Remove' column
+                if (e.ColumnIndex == tblOrderCart.Columns["Remove"].Index && e.RowIndex >= 0)
+                {
+                    try
+                    {
+                        // Remove the selected row
+                        tblOrderCart.Rows.RemoveAt(e.RowIndex);
+
+                        // Recalculate the total amount after removal
+                        CalculateSubTotalAmount();
+                    }
+                    catch (InvalidOperationException ex)
+                    {
+                        // Optionally, show a message if the row removal fails
+                        MessageBox.Show("Cannot remove the new row.", "Error");
+                    }
+                }
+                else if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // For all other columns
+                {
+                    // Get the selected row
+                    DataGridViewRow selectedRow = tblOrderCart.Rows[e.RowIndex];
+
+                    // Populate the text fields with values from the selected row
+                    txtBookName.Text = selectedRow.Cells["BookName"].Value?.ToString() ?? "";
+                    txtAuthor.Text = selectedRow.Cells["Author"].Value?.ToString() ?? "";
+                    txtPrize.Text = selectedRow.Cells["Price"].Value?.ToString() ?? "";
+
+                    // Clear the txtQuantity field to allow the user to input a new quantity
+                    txtOrderQty.Clear();
+                }
+            }
+        }
+
+        private void cmbDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbDiscount.SelectedItem != null)
+            {
+                // Get the subtotal directly from the CalculateSubTotalAmount() method
+                decimal subTotal = CalculateSubTotalAmount();
+
+                if (int.TryParse(cmbDiscount.SelectedItem.ToString(), out int discountPercentage))
+                {
+                    decimal discountAmount = (subTotal * discountPercentage) / 100;
+                    decimal total = subTotal - discountAmount;
+
+                    txtOrderTotal.Text = total.ToString("F2"); // Update txtOrderTotal
+                }
+            }
+        }
+
+
+        public void SetUserInfo(string username, string role)
+        {
+            Username = username;
+            Role = role;
+            lblusernameRole.Text = $"{username} - {role}";
+            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        }
+
+        private void picLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                frmLogin loginForm = new frmLogin();
+                loginForm.Show();
+                this.Hide();
+
+
+            }
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesClearkCustomer());
+
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            SalesClearkDashboard adminDashboard = new SalesClearkDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnSalespos_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesClarkSales(Username));
+
+        }
+
+        private void txtAmountPaid_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtOrderTotal.Text, out decimal orderTotal) && decimal.TryParse(txtAmountPaid.Text, out decimal amountPaid))
+            {
+                decimal change = amountPaid - orderTotal;
+                txtChange.Text = change.ToString("F2"); // Format to 2 decimal places
+            }
+            else
+            {
+                txtChange.Text = "0.00"; // Default to 0 if input is invalid
+            }
         }
 
         private void cmbDeliveryType_SelectedIndexChanged(object sender, EventArgs e)
@@ -518,16 +557,6 @@ namespace Book_Haven_System_Ad.Forms
                     txtDeliveryAddress.Visible = true;
                 }
             }
-        }
-
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void picLogout_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

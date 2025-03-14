@@ -17,5 +17,7 @@ namespace Book_Haven_System_Ad.Business.Interfaces
         
         CustomerModel GetCustomerDetailsByNumber(string customerNumber);
 
+         int GetCustomerCount();
+
     }
 }

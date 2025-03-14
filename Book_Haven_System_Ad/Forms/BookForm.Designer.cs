@@ -611,6 +611,7 @@
             btnBooks.TabIndex = 50;
             btnBooks.Text = "Books";
             btnBooks.UseVisualStyleBackColor = true;
+            btnBooks.Click += btnBooks_Click;
             // 
             // frmBookForm
             // 

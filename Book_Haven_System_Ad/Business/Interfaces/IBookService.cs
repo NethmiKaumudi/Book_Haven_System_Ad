@@ -17,5 +17,7 @@ namespace Book_Haven_System_Ad.Business.Interfaces
         BookModel GetBookByName(string bookName);
 
         public List<BookModel> GetLowStockBooks();
+        int GetTotalTitleCount();
+
     }
 }

@@ -291,7 +291,6 @@ namespace Book_Haven_System_Ad.Forms
         {
             NavigationHelper.OpenForm(this, new frmUser());
 
-
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
@@ -324,6 +323,11 @@ namespace Book_Haven_System_Ad.Forms
             NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
         }
 
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmBookForm());
+        }
 
+        
     }
 }

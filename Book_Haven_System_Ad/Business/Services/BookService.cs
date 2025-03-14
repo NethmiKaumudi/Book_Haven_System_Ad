@@ -54,5 +54,10 @@ namespace Book_Haven_System_Ad.Business.Services
         {
             return _bookRepo.GetLowStockBooks();
         }
+
+        public int GetTotalTitleCount()
+        {
+            return _bookRepo.GetTotalTitleCount();
+        }
     }
 }

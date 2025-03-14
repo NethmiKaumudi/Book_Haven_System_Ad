@@ -19,6 +19,7 @@ namespace Book_Haven_System_Ad.Data.Repository.Interfaces
 
         List<BestSellingBookModel> GetBestSellingBooksReport(DateTime startDate, DateTime endDate);
        List<OrderSalesData> GetSalesByProcessedBy(DateTime date);
+        decimal GetTotalSalesForToday();
 
     }
 }

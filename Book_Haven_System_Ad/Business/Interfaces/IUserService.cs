@@ -18,5 +18,8 @@ namespace Book_Haven__Application.Business.Interfaces
         string Login(string username, string password);
         Guid? GetUserIdByName(string username);
 
+        (int totalUserCount, Dictionary<string, int> roleWiseUserCount) GetUserCounts();
+
+
     }
 }

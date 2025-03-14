@@ -16,7 +16,6 @@ namespace Book_Haven__Application.Data.Models
         public int Stock { get; set; }
         public bool IsDeleted { get; set; }
 
-        // Foreign Key: SupplierID
         public Guid SupplierID { get; set; }
         public SupplierModel Supplier { get; set; }
     }
