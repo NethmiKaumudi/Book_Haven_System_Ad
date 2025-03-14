@@ -1,12 +1,14 @@
 ﻿using Book_Haven__Application.Data.Models;
 using Book_Haven_System_Ad.Business.Interfaces;
 using Book_Haven_System_Ad.Business.Services;
+using Book_Haven_System_Ad.Data.Models;
 using Book_Haven_System_Ad.Data.Repository.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,17 +23,55 @@ namespace Book_Haven_System_Ad.Forms
 
         public string Username { get; set; }
         public string Role { get; set; }
-        private IBookService bookService; // Assuming this is injected or initialized
+        private readonly IBookService bookService;
+        private readonly IOrderService _orderService;
+
 
         public frmAdminDashboard()
         {
             InitializeComponent();
             bookService = new BookService();
+            _orderService = new OrderService();
             InitializeTimer();
 
             LoadLowStockBooks();
+            tblSalesPerformance.Columns.Add("ProcessedByColumn", "Processed By");
+            tblSalesPerformance.Columns.Add("TotalSalesColumn", "Total Sales");
+            LoadTodaySalesData();    
+            LoadYesterdaySalesData();
         }
-        // Timer to check for low stock periodically (every 1 hour)
+      
+        public void LoadTodaySalesData()
+        {
+            LoadSalesData(DateTime.Now); 
+        }
+
+        public void LoadYesterdaySalesData()
+        {
+            LoadSalesData(DateTime.Now.AddDays(-1)); 
+        }
+
+        public void LoadSalesData(DateTime date)
+        {
+            try
+            {
+                List<OrderSalesData> salesData = _orderService.GetSalesByProcessedBy(date);
+                tblSalesPerformance.Rows.Clear(); // Clear previous data
+
+                CultureInfo sriLankanCulture = new CultureInfo("si-LK"); // Use Sri Lankan culture
+
+                foreach (var data in salesData)
+                {
+                    // Format TotalSales as Sri Lankan Rupees
+                    string formattedSales = data.TotalSales.ToString("C", sriLankanCulture);
+                    tblSalesPerformance.Rows.Add(data.ProcessedBy, formattedSales);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred while loading sales data: {ex.Message}");
+            }
+        }
         private void Timer_Tick(object sender, EventArgs e)
         {
             try
@@ -127,8 +167,6 @@ namespace Book_Haven_System_Ad.Forms
         }
         private void picLogout_Click(object sender, EventArgs e)
         {
-
-
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -141,32 +179,54 @@ namespace Book_Haven_System_Ad.Forms
 
 
             }
-
-
-
-        }
-        
-
-        private void btnUsers_Click(object sender, EventArgs e)
-        {
-            NavigationHelper.OpenForm(this, new frmUser());
-        }
-
-        private void btnBooks_Click(object sender, EventArgs e)
-        {
-            NavigationHelper.OpenForm(this, new frmBookForm());
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            NavigationHelper.OpenForm(this, new frmAdminDashboard());
+            frmAdminDashboard adminDashboard = new frmAdminDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
-            NavigationHelper.OpenForm(this, new frmCustomerForm());
+
         }
 
-       
+        private void btnSalespos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnSuppliers_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnPO_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

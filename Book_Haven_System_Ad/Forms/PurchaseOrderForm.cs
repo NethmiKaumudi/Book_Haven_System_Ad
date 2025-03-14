@@ -13,6 +13,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Book_Haven_System_Ad.Forms
 {
@@ -22,11 +23,14 @@ namespace Book_Haven_System_Ad.Forms
         private List<PurchaseOrderDetailsModel> orderDetailsList = new List<PurchaseOrderDetailsModel>();
         private readonly ISupplierService _supplierService;
         private List<SupplierModel> suppliers = new List<SupplierModel>();
-        List<PurchaseOrderModel> purchaseOrders=new List<PurchaseOrderModel>();
+        List<PurchaseOrderModel> purchaseOrders = new List<PurchaseOrderModel>();
         private Guid _selectedBookId = Guid.Empty; // Default to an empty GUID
 
         private readonly IBookService _bookService;
         private List<BookModel> books = new List<BookModel>();
+
+        public string Username { get; set; }
+        public string Role { get; set; }
         public frmPurchaseOrderForm()
         {
             InitializeComponent();
@@ -47,13 +51,14 @@ namespace Book_Haven_System_Ad.Forms
 
         private void tblPurchaseOrders_CellFormatting(object? sender, DataGridViewCellFormattingEventArgs e)
         {
-            // Ensure that the column is "Status" and the row is valid
+
             if (tblPurchaseOrders.Columns[e.ColumnIndex].Name == "Status" && e.RowIndex >= 0)
             {
-                // Get the status value from the cell
+
                 string status = e.Value.ToString();
 
-                // Set the background color based on the Status value
+
+
                 if (status == "Pending")
                 {
                     e.CellStyle.BackColor = Color.Green; // Green for Pending
@@ -383,47 +388,47 @@ namespace Book_Haven_System_Ad.Forms
 
         private void btnAddToTable_Click(object sender, EventArgs e)
         {
-           
-                // Retrieve values from the text fields
-                string bookName = txtBookName.Text.Trim();
-                string author = txtAuthor.Text.Trim();
-                decimal price = 0;
-                int quantity = 0;
 
-                // Check if all fields are valid
-                if (string.IsNullOrEmpty(bookName) || string.IsNullOrEmpty(author) ||
-                    !decimal.TryParse(txtPrice.Text, out price) || !int.TryParse(txtQuantity.Text, out quantity))
+            // Retrieve values from the text fields
+            string bookName = txtBookName.Text.Trim();
+            string author = txtAuthor.Text.Trim();
+            decimal price = 0;
+            int quantity = 0;
+
+            // Check if all fields are valid
+            if (string.IsNullOrEmpty(bookName) || string.IsNullOrEmpty(author) ||
+                !decimal.TryParse(txtPrice.Text, out price) || !int.TryParse(txtQuantity.Text, out quantity))
+            {
+                MessageBox.Show("Please fill in all the fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Check if the book already exists in the DataGridView
+            bool bookExists = false;
+            foreach (DataGridViewRow row in tblSelectedBooks.Rows)
+            {
+                // Check if the BookName and Author match
+                if (row.Cells["BookName"].Value != null && row.Cells["BookName"].Value.ToString() == bookName &&
+                    row.Cells["Author"].Value != null && row.Cells["Author"].Value.ToString() == author)
                 {
-                    MessageBox.Show("Please fill in all the fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    // Update the quantity of the existing book
+                    row.Cells["Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value) + quantity;
+                    bookExists = true;
+                    break;
                 }
+            }
 
-                // Check if the book already exists in the DataGridView
-                bool bookExists = false;
-                foreach (DataGridViewRow row in tblSelectedBooks.Rows)
-                {
-                    // Check if the BookName and Author match
-                    if (row.Cells["BookName"].Value != null && row.Cells["BookName"].Value.ToString() == bookName &&
-                        row.Cells["Author"].Value != null && row.Cells["Author"].Value.ToString() == author)
-                    {
-                        // Update the quantity of the existing book
-                        row.Cells["Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value) + quantity;
-                        bookExists = true;
-                        break;
-                    }
-                }
-
-                if (!bookExists)
-                {
+            if (!bookExists)
+            {
                 // Add the book information to the DataGridView (tblSelectedBooks)
                 tblSelectedBooks.Rows.Add(_selectedBookId, bookName, author, price.ToString("F2"), quantity);
             }
 
             // Clear the text fields after adding
             txtBookName.Clear();
-                txtAuthor.Clear();
-                txtPrice.Clear();
-                txtQuantity.Clear();
+            txtAuthor.Clear();
+            txtPrice.Clear();
+            txtQuantity.Clear();
             _selectedBookId = Guid.Empty;
             // Set focus back to the book name text field
             txtBookName.Focus();
@@ -452,7 +457,7 @@ namespace Book_Haven_System_Ad.Forms
 
 
 
-       
+
         private void txtBookName_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -536,11 +541,16 @@ namespace Book_Haven_System_Ad.Forms
                 tblPurchaseOrders.DataSource = filteredPurchaseOrders;
             }
         }
-       
 
+        public void SetUserInfo(string username, string role)
+        {
+            Username = username;
+            Role = role;
+            lblusernameRole.Text = $"{username} - {role}";
+            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        }
+      
 
-
-
-
+      
     }
 }

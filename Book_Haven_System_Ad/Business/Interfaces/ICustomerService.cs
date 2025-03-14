@@ -14,5 +14,8 @@ namespace Book_Haven_System_Ad.Business.Interfaces
         void Delete(Guid customerId);
         List<CustomerModel> GetAllCustomers();
         CustomerModel GetCustomerById(Guid customerId);
+        
+        CustomerModel GetCustomerDetailsByNumber(string customerNumber);
+
     }
 }

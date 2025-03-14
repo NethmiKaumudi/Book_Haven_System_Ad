@@ -12,12 +12,15 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Book_Haven_System_Ad.Forms
 {
     public partial class frmCustomerForm : Form
     {
         private readonly ICustomerService _customerService;
+        public string Username { get; set; }
+        public string Role { get; set; }
         public frmCustomerForm()
         {
             InitializeComponent();
@@ -97,8 +100,8 @@ namespace Book_Haven_System_Ad.Forms
 
                 _customerService.Save(customer);
                 MessageBox.Show("Customer added successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                 LoadCustomers();
-                // ClearFields();
+                LoadCustomers();
+                ClearFields();
             }
             catch (Exception ex)
             {
@@ -140,26 +143,22 @@ namespace Book_Haven_System_Ad.Forms
         {
             try
             {
-                // Ensure the Customer ID field is not empty
                 if (string.IsNullOrWhiteSpace(txtCustomerId.Text))
                 {
                     MessageBox.Show("Customer ID is required!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Parse the Customer ID from the text box
                 var customerId = Guid.Parse(txtCustomerId.Text);
 
-                // Fetch the existing customer from the service
                 var existingCustomer = _customerService.GetCustomerById(customerId);
 
                 if (existingCustomer == null)
                 {
                     MessageBox.Show("Customer not found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return; // Exit if the customer doesn't exist
+                    return;
                 }
 
-                // Update only the modified fields
                 var updatedCustomer = new CustomerModel
                 {
                     CustomerID = customerId,
@@ -169,15 +168,12 @@ namespace Book_Haven_System_Ad.Forms
                     Address = txtAddress.Text != existingCustomer.Address ? txtAddress.Text : existingCustomer.Address
                 };
 
-                // Call the service to update the customer
                 _customerService.Edit(updatedCustomer);
 
-                // Reload the customer list to reflect the changes
                 LoadCustomers();
 
-                // Show success message
                 MessageBox.Show("Customer updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                ClearFields(); // Optionally clear the fields after update
+                ClearFields();
             }
             catch (FormatException ex)
             {
@@ -186,7 +182,6 @@ namespace Book_Haven_System_Ad.Forms
             }
             catch (Exception ex)
             {
-                // Catch any other unexpected errors
                 MessageBox.Show($"An unexpected error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -253,27 +248,104 @@ namespace Book_Haven_System_Ad.Forms
 
         private void txtSerach_TextChanged(object sender, EventArgs e)
         {
-            string searchTerm = txtSerach.Text.Trim(); 
+            string searchTerm = txtSerach.Text.Trim();
 
-            // Fetch all customers (excluding deleted ones)
             var customers = _customerService.GetAllCustomers().Where(c => !c.IsDeleted).ToList();
 
             if (string.IsNullOrEmpty(searchTerm))
             {
-                // If no search term is provided, display all customers
                 tblCustomers.DataSource = customers;
             }
             else
             {
-                // Filter the customers based on the search term
                 var filteredCustomers = customers.Where(c => c.Name.Contains(searchTerm, StringComparison.OrdinalIgnoreCase) ||
                                                               (c.Email != null && c.Email.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)) ||
                                                               (c.Phone != null && c.Phone.Contains(searchTerm, StringComparison.OrdinalIgnoreCase)))
                                                   .ToList();
 
-                // Set the filtered customers as the data source for the DataGridView
                 tblCustomers.DataSource = filteredCustomers;
             }
+        }
+        public void SetUserInfo(string username, string role)
+        {
+            Username = username;
+            Role = role;
+            lblusernameRole.Text = $"{username} - {role}";
+            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            frmAdminDashboard adminDashboard = new frmAdminDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role); // Use this.Username and this.Role
+            adminDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmUser());
+
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmBookForm());
+
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
+
+        }
+
+        private void btnSalespos_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSales(Username));
+
+        }
+
+
+
+        private void btnSuppliers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
+
+        }
+
+        private void btnPO_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmPurchaseOrderForm());
+
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new ReportForm());
+
+        }
+
+        private void picLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                // Logic for logging out (e.g., clear session, close form)
+
+                // For example: Show the login form
+                frmLogin loginForm = new frmLogin();
+                loginForm.Show();
+                this.Hide();
+
+
+            }
+        }
+
+        private void btnSalesDetails_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
+
         }
     }
 }

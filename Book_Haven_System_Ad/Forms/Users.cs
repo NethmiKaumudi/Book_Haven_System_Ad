@@ -259,9 +259,11 @@ namespace Book_Haven_System_Ad.Forms
             {
                 _userService.SoftDeleteUser(username);  // selectedUsername is the username of the selected user
 
-                LoadUsers();  
-                Clearields() ;
+                LoadUsers();
+                Clearields();
             }
         }
+
+       
     }
 }

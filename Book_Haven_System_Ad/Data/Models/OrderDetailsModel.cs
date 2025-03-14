@@ -8,10 +8,12 @@ namespace Book_Haven__Application.Data.Models
 {
     internal class OrderDetailsModel
     {
-        public Guid OrderDetailId { get; set; }
-        public Guid OrderId { get; set; }
-        public Guid BookId { get; set; }
+        public Guid OrderDetailID { get; set; }
+        public String OrderId { get; set; }
+        public Guid BookID { get; set; }
         public int Quantity { get; set; }
         public decimal Price { get; set; }
+        public OrderModel order { get; set; }
+        public BookModel Book { get; set; }
     }
 }

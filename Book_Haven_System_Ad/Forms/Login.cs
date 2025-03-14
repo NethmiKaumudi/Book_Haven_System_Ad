@@ -45,8 +45,10 @@ namespace Book_Haven_System_Ad.Forms
                 }
                 else if (role == "Sales Clerk")
                 {
-                   
-                    MessageBox.Show("login as Cleark");
+                    SalesClearkDashboard adminDashboard = new SalesClearkDashboard();
+                    adminDashboard.SetUserInfo(username, role);
+                    adminDashboard.Show();
+                    this.Hide();
 
                 }
             }

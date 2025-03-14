@@ -50,5 +50,9 @@ namespace Book_Haven_System_Ad.Business.Services
 
             return customer;
         }
+        public CustomerModel GetCustomerDetailsByNumber(string customerNumber)
+        {
+            return _customerRepo.GetCustomerDetailsByNumber(customerNumber);
+        }
     }
 }

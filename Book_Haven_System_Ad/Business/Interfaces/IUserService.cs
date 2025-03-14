@@ -16,5 +16,7 @@ namespace Book_Haven__Application.Business.Interfaces
         void SoftDeleteUser(string username);
         void UpdateUserByUsername( string newUsername, string password, string role);
         string Login(string username, string password);
+        Guid? GetUserIdByName(string username);
+
     }
 }

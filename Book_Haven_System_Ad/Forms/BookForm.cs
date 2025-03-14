@@ -17,7 +17,8 @@ namespace Book_Haven_System_Ad.Forms
     public partial class frmBookForm : Form
     {
         private readonly IBookService _bookService;
-
+        public string Username { get; set; }
+        public string Role { get; set; }
         public frmBookForm()
         {
             InitializeComponent();
@@ -255,12 +256,74 @@ namespace Book_Haven_System_Ad.Forms
 
             }
         }
+        public void SetUserInfo(string username, string role)
+        {
+            Username = username;
+            Role = role;
+            lblusernameRole.Text = $"{username} - {role}";
+            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        }
+
+        private void picLogout_Click_1(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                // Logic for logging out (e.g., clear session, close form)
+
+                // For example: Show the login form
+                frmLogin loginForm = new frmLogin();
+                loginForm.Show();
+                this.Hide();
+
+
+            }
+        }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-            frmAdminDashboard dashboardForm = new frmAdminDashboard();
-            dashboardForm.Show();
+            frmAdminDashboard adminDashboard = new frmAdminDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.Show();
             this.Hide();
         }
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmUser());
+
+
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
+        }
+
+        private void btnSalespos_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSales(Username));
+        }
+
+        private void btnSuppliers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSupplierForm());
+        }
+
+        private void btnPO_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmPurchaseOrderForm());
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new ReportForm());
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
+        }
+
+
     }
 }

@@ -193,7 +193,34 @@ namespace Book_Haven_System_Ad.Data.Repository
 
             return null; // Return null if no customer is found
         }
+       
+        public CustomerModel GetCustomerDetailsByNumber(string customerNumber)
+        {
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT CustomerID, Name FROM Customers WHERE Phone = @customerNumber";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@customerNumber", customerNumber);
 
-
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new CustomerModel
+                            {
+                                CustomerID = reader.GetGuid("CustomerID"),
+                                Name = reader.GetString("Name")
+                            };
+                        }
+                        else
+                        {
+                            return null; // Customer not found
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -16,7 +16,6 @@ namespace Book_Haven_System_Ad.Data.Models
         public decimal Price { get; set; }
 
 
-        // Navigation Properties
         public PurchaseOrderModel PurchaseOrder { get; set; }
         public BookModel Book { get; set; }
     }

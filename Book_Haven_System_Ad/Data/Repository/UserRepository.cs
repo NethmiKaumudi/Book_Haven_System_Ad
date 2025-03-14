@@ -188,5 +188,32 @@ namespace Book_Haven__Application.Data.Repository
             }
         }
 
+        public UserModel GetUserByName(string username)
+        {
+            using (var connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                string query = "SELECT UserID FROM users WHERE Username = @username";
+                using (var command = new MySqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@username", username);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new UserModel
+                            {
+                                UserID = Guid.Parse(reader["UserID"].ToString()) // Assuming UserID is stored as a string or can be parsed
+                            };
+                        }
+                        else
+                        {
+                            return null; // User not found
+                        }
+                    }
+                }
+            }
+        }
     }
 }

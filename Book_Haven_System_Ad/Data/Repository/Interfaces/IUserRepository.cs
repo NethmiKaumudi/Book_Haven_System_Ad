@@ -18,5 +18,7 @@ namespace Book_Haven_System_Ad.Data.Repository.Interfaces
         void SoftDeleteUser(string username);
         public void UpdateUserByUsername(string newUsername, string passwordHash, string role);
 
+        UserModel GetUserByName(string username);
+
     }
 }

@@ -97,6 +97,18 @@ namespace Book_Haven__Application.Business.Services
                 return null; // Invalid credentials
             }
         }
+        public Guid? GetUserIdByName(string username)
+        {
+            UserModel user = _userRepository.GetUserByName(username);
+            if (user != null)
+            {
+                return user.UserID;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
     }
 }

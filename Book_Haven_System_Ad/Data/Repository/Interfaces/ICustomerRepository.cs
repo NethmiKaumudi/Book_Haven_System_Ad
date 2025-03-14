@@ -15,6 +15,9 @@ namespace Book_Haven_System_Ad.Data.Repository.Interfaces
         void SoftDelete(Guid customerId);
         List<CustomerModel> GetAll();
         CustomerModel GetCustomerById(Guid customerId);
+        
+        CustomerModel GetCustomerDetailsByNumber(string customerNumber);
+
 
     }
 }
