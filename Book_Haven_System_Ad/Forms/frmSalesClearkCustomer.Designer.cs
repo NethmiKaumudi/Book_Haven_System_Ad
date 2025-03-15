@@ -31,20 +31,20 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSalesClearkCustomer));
             label1 = new Label();
             groupBox1 = new GroupBox();
-            btnSave = new Button();
-            txtCustomerId = new TextBox();
-            txtCustomerName = new TextBox();
-            btnEdit = new Button();
-            btnDelete = new Button();
-            btnClear = new Button();
-            label5 = new Label();
-            label6 = new Label();
-            txtEmail = new TextBox();
-            txtPhoneNumber = new TextBox();
-            txtAddress = new TextBox();
-            label7 = new Label();
-            label8 = new Label();
             label9 = new Label();
+            label8 = new Label();
+            label7 = new Label();
+            txtAddress = new TextBox();
+            txtPhoneNumber = new TextBox();
+            txtEmail = new TextBox();
+            label6 = new Label();
+            label5 = new Label();
+            btnClear = new Button();
+            btnDelete = new Button();
+            btnEdit = new Button();
+            txtCustomerName = new TextBox();
+            txtCustomerId = new TextBox();
+            btnSave = new Button();
             tblCustomers = new DataGridView();
             txtSerach = new TextBox();
             DashboardPanel = new Panel();
@@ -102,70 +102,88 @@
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             // 
-            // btnSave
+            // label9
             // 
-            btnSave.BackColor = Color.Green;
-            btnSave.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSave.ForeColor = SystemColors.ActiveCaptionText;
-            btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(143, 132);
-            btnSave.Name = "btnSave";
-            btnSave.Size = new Size(131, 41);
-            btnSave.TabIndex = 22;
-            btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = false;
-            btnSave.Click += btnSave_Click;
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label9.Location = new Point(290, 73);
+            label9.Name = "label9";
+            label9.Size = new Size(79, 23);
+            label9.TabIndex = 43;
+            label9.Text = "Address :";
             // 
-            // txtCustomerId
+            // label8
             // 
-            txtCustomerId.BackColor = Color.MintCream;
-            txtCustomerId.BorderStyle = BorderStyle.FixedSingle;
-            txtCustomerId.ForeColor = Color.Black;
-            txtCustomerId.Location = new Point(41, 39);
-            txtCustomerId.Name = "txtCustomerId";
-            txtCustomerId.PlaceholderText = "Customer Id ";
-            txtCustomerId.ReadOnly = true;
-            txtCustomerId.Size = new Size(174, 27);
-            txtCustomerId.TabIndex = 27;
+            label8.AutoSize = true;
+            label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label8.Location = new Point(38, 73);
+            label8.Name = "label8";
+            label8.Size = new Size(131, 23);
+            label8.TabIndex = 42;
+            label8.Text = "PhoneNumber :";
             // 
-            // txtCustomerName
+            // label7
             // 
-            txtCustomerName.BackColor = Color.MintCream;
-            txtCustomerName.BorderStyle = BorderStyle.FixedSingle;
-            txtCustomerName.ForeColor = Color.Black;
-            txtCustomerName.Location = new Point(232, 39);
-            txtCustomerName.Name = "txtCustomerName";
-            txtCustomerName.PlaceholderText = "Name ";
-            txtCustomerName.Size = new Size(259, 27);
-            txtCustomerName.TabIndex = 28;
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label7.Location = new Point(520, 11);
+            label7.Name = "label7";
+            label7.Size = new Size(60, 23);
+            label7.TabIndex = 41;
+            label7.Text = "Email :";
             // 
-            // btnEdit
+            // txtAddress
             // 
-            btnEdit.BackColor = Color.Chocolate;
-            btnEdit.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnEdit.ForeColor = SystemColors.ActiveCaptionText;
-            btnEdit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEdit.Location = new Point(299, 132);
-            btnEdit.Name = "btnEdit";
-            btnEdit.Size = new Size(131, 41);
-            btnEdit.TabIndex = 33;
-            btnEdit.Text = "Edit";
-            btnEdit.UseVisualStyleBackColor = false;
-            btnEdit.Click += btnEdit_Click;
+            txtAddress.BackColor = Color.MintCream;
+            txtAddress.BorderStyle = BorderStyle.FixedSingle;
+            txtAddress.ForeColor = Color.Black;
+            txtAddress.Location = new Point(293, 99);
+            txtAddress.Name = "txtAddress";
+            txtAddress.PlaceholderText = "Address";
+            txtAddress.Size = new Size(246, 27);
+            txtAddress.TabIndex = 39;
             // 
-            // btnDelete
+            // txtPhoneNumber
             // 
-            btnDelete.BackColor = Color.Crimson;
-            btnDelete.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDelete.ForeColor = SystemColors.ActiveCaptionText;
-            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDelete.Location = new Point(460, 132);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(131, 41);
-            btnDelete.TabIndex = 34;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = false;
-            btnDelete.Click += btnDelete_Click;
+            txtPhoneNumber.BackColor = Color.MintCream;
+            txtPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
+            txtPhoneNumber.ForeColor = Color.Black;
+            txtPhoneNumber.Location = new Point(41, 99);
+            txtPhoneNumber.Name = "txtPhoneNumber";
+            txtPhoneNumber.PlaceholderText = "Phone Number";
+            txtPhoneNumber.Size = new Size(213, 27);
+            txtPhoneNumber.TabIndex = 38;
+            // 
+            // txtEmail
+            // 
+            txtEmail.BackColor = Color.MintCream;
+            txtEmail.BorderStyle = BorderStyle.FixedSingle;
+            txtEmail.ForeColor = Color.Black;
+            txtEmail.Location = new Point(522, 39);
+            txtEmail.Name = "txtEmail";
+            txtEmail.PlaceholderText = "Email ";
+            txtEmail.Size = new Size(310, 27);
+            txtEmail.TabIndex = 37;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label6.Location = new Point(229, 11);
+            label6.Name = "label6";
+            label6.Size = new Size(144, 23);
+            label6.TabIndex = 36;
+            label6.Text = "Customer Name :";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label5.Location = new Point(37, 11);
+            label5.Name = "label5";
+            label5.Size = new Size(113, 23);
+            label5.TabIndex = 27;
+            label5.Text = "Customer Id :";
             // 
             // btnClear
             // 
@@ -181,88 +199,70 @@
             btnClear.UseVisualStyleBackColor = false;
             btnClear.Click += btnClear_Click;
             // 
-            // label5
+            // btnDelete
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label5.Location = new Point(37, 11);
-            label5.Name = "label5";
-            label5.Size = new Size(113, 23);
-            label5.TabIndex = 27;
-            label5.Text = "Customer Id :";
+            btnDelete.BackColor = Color.Crimson;
+            btnDelete.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDelete.ForeColor = SystemColors.ActiveCaptionText;
+            btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDelete.Location = new Point(460, 132);
+            btnDelete.Name = "btnDelete";
+            btnDelete.Size = new Size(131, 41);
+            btnDelete.TabIndex = 34;
+            btnDelete.Text = "Delete";
+            btnDelete.UseVisualStyleBackColor = false;
+            btnDelete.Click += btnDelete_Click;
             // 
-            // label6
+            // btnEdit
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label6.Location = new Point(229, 11);
-            label6.Name = "label6";
-            label6.Size = new Size(144, 23);
-            label6.TabIndex = 36;
-            label6.Text = "Customer Name :";
+            btnEdit.BackColor = Color.Chocolate;
+            btnEdit.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnEdit.ForeColor = SystemColors.ActiveCaptionText;
+            btnEdit.ImageAlign = ContentAlignment.MiddleLeft;
+            btnEdit.Location = new Point(299, 132);
+            btnEdit.Name = "btnEdit";
+            btnEdit.Size = new Size(131, 41);
+            btnEdit.TabIndex = 33;
+            btnEdit.Text = "Edit";
+            btnEdit.UseVisualStyleBackColor = false;
+            btnEdit.Click += btnEdit_Click;
             // 
-            // txtEmail
+            // txtCustomerName
             // 
-            txtEmail.BackColor = Color.MintCream;
-            txtEmail.BorderStyle = BorderStyle.FixedSingle;
-            txtEmail.ForeColor = Color.Black;
-            txtEmail.Location = new Point(522, 39);
-            txtEmail.Name = "txtEmail";
-            txtEmail.PlaceholderText = "Email ";
-            txtEmail.Size = new Size(310, 27);
-            txtEmail.TabIndex = 37;
+            txtCustomerName.BackColor = Color.MintCream;
+            txtCustomerName.BorderStyle = BorderStyle.FixedSingle;
+            txtCustomerName.ForeColor = Color.Black;
+            txtCustomerName.Location = new Point(232, 39);
+            txtCustomerName.Name = "txtCustomerName";
+            txtCustomerName.PlaceholderText = "Name ";
+            txtCustomerName.Size = new Size(259, 27);
+            txtCustomerName.TabIndex = 28;
             // 
-            // txtPhoneNumber
+            // txtCustomerId
             // 
-            txtPhoneNumber.BackColor = Color.MintCream;
-            txtPhoneNumber.BorderStyle = BorderStyle.FixedSingle;
-            txtPhoneNumber.ForeColor = Color.Black;
-            txtPhoneNumber.Location = new Point(41, 99);
-            txtPhoneNumber.Name = "txtPhoneNumber";
-            txtPhoneNumber.PlaceholderText = "Phone Number";
-            txtPhoneNumber.Size = new Size(213, 27);
-            txtPhoneNumber.TabIndex = 38;
+            txtCustomerId.BackColor = Color.MintCream;
+            txtCustomerId.BorderStyle = BorderStyle.FixedSingle;
+            txtCustomerId.ForeColor = Color.Black;
+            txtCustomerId.Location = new Point(41, 39);
+            txtCustomerId.Name = "txtCustomerId";
+            txtCustomerId.PlaceholderText = "Customer Id ";
+            txtCustomerId.ReadOnly = true;
+            txtCustomerId.Size = new Size(174, 27);
+            txtCustomerId.TabIndex = 27;
             // 
-            // txtAddress
+            // btnSave
             // 
-            txtAddress.BackColor = Color.MintCream;
-            txtAddress.BorderStyle = BorderStyle.FixedSingle;
-            txtAddress.ForeColor = Color.Black;
-            txtAddress.Location = new Point(293, 99);
-            txtAddress.Name = "txtAddress";
-            txtAddress.PlaceholderText = "Address";
-            txtAddress.Size = new Size(246, 27);
-            txtAddress.TabIndex = 39;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label7.Location = new Point(520, 11);
-            label7.Name = "label7";
-            label7.Size = new Size(60, 23);
-            label7.TabIndex = 41;
-            label7.Text = "Email :";
-            // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label8.Location = new Point(38, 73);
-            label8.Name = "label8";
-            label8.Size = new Size(131, 23);
-            label8.TabIndex = 42;
-            label8.Text = "PhoneNumber :";
-            // 
-            // label9
-            // 
-            label9.AutoSize = true;
-            label9.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label9.Location = new Point(290, 73);
-            label9.Name = "label9";
-            label9.Size = new Size(79, 23);
-            label9.TabIndex = 43;
-            label9.Text = "Address :";
+            btnSave.BackColor = Color.Green;
+            btnSave.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.ForeColor = SystemColors.ActiveCaptionText;
+            btnSave.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSave.Location = new Point(143, 132);
+            btnSave.Name = "btnSave";
+            btnSave.Size = new Size(131, 41);
+            btnSave.TabIndex = 22;
+            btnSave.Text = "Save";
+            btnSave.UseVisualStyleBackColor = false;
+            btnSave.Click += btnSave_Click;
             // 
             // tblCustomers
             // 
@@ -384,7 +384,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.Green;
+            btnDashboard.BackColor = Color.White;
             btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
@@ -421,6 +421,7 @@
             // 
             // btnCustomers
             // 
+            btnCustomers.BackColor = Color.Green;
             btnCustomers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
             btnCustomers.Location = new Point(138, 218);
@@ -428,7 +429,7 @@
             btnCustomers.Size = new Size(157, 32);
             btnCustomers.TabIndex = 29;
             btnCustomers.Text = "Customers";
-            btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.UseVisualStyleBackColor = false;
             btnCustomers.Click += btnCustomers_Click;
             // 
             // frmSalesClearkCustomer

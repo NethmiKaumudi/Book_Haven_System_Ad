@@ -241,21 +241,7 @@ namespace Book_Haven_System_Ad.Forms
             }
         }
 
-        private void picLogout_Click(object sender, EventArgs e)
-        {
-            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                // Logic for logging out (e.g., clear session, close form)
-
-                // For example: Show the login form
-                frmLogin loginForm = new frmLogin();
-                loginForm.Show();
-                this.Hide();
-
-
-            }
-        }
+        
         public void SetUserInfo(string username, string role)
         {
             Username = username;
@@ -269,9 +255,7 @@ namespace Book_Haven_System_Ad.Forms
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                // Logic for logging out (e.g., clear session, close form)
-
-                // For example: Show the login form
+                
                 frmLogin loginForm = new frmLogin();
                 loginForm.Show();
                 this.Hide();
@@ -283,19 +267,27 @@ namespace Book_Haven_System_Ad.Forms
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             frmAdminDashboard adminDashboard = new frmAdminDashboard();
-            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.SetUserInfo(this.Username, this.Role); 
             adminDashboard.Show();
             this.Hide();
         }
+
         private void btnUsers_Click(object sender, EventArgs e)
         {
             NavigationHelper.OpenForm(this, new frmUser());
 
         }
 
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmBookForm());
+
+        }
+
         private void btnCustomers_Click(object sender, EventArgs e)
         {
             NavigationHelper.OpenForm(this, new frmCustomerForm());
+
         }
 
         private void btnSalespos_Click(object sender, EventArgs e)
@@ -303,9 +295,15 @@ namespace Book_Haven_System_Ad.Forms
             NavigationHelper.OpenForm(this, new frmSales(Username));
         }
 
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
+
+        }
+
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
-            NavigationHelper.OpenForm(this, new frmSupplierForm());
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
         }
 
         private void btnPO_Click(object sender, EventArgs e)
@@ -317,17 +315,5 @@ namespace Book_Haven_System_Ad.Forms
         {
             NavigationHelper.OpenForm(this, new ReportForm());
         }
-
-        private void btnOrders_Click(object sender, EventArgs e)
-        {
-            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
-        }
-
-        private void btnBooks_Click(object sender, EventArgs e)
-        {
-            NavigationHelper.OpenForm(this, new frmBookForm());
-        }
-
-        
     }
 }

@@ -146,6 +146,7 @@
             picLogout.Size = new Size(62, 55);
             picLogout.TabIndex = 22;
             picLogout.TabStop = false;
+            picLogout.Click += picLogout_Click;
             // 
             // pictureBox4
             // 
@@ -177,6 +178,7 @@
             btnOrders.TabIndex = 63;
             btnOrders.Text = "Sales Details";
             btnOrders.UseVisualStyleBackColor = true;
+            btnOrders.Click += btnOrders_Click;
             // 
             // lblusernameRole
             // 
@@ -198,6 +200,7 @@
             btnReports.TabIndex = 61;
             btnReports.Text = "Reports";
             btnReports.UseVisualStyleBackColor = true;
+            btnReports.Click += btnReports_Click;
             // 
             // label2
             // 
@@ -240,6 +243,7 @@
             btnSuppliers.TabIndex = 54;
             btnSuppliers.Text = "Suppliers";
             btnSuppliers.UseVisualStyleBackColor = true;
+            btnSuppliers.Click += btnSuppliers_Click;
             // 
             // btnSalespos
             // 
@@ -251,6 +255,7 @@
             btnSalespos.TabIndex = 56;
             btnSalespos.Text = "Sales(POS)";
             btnSalespos.UseVisualStyleBackColor = true;
+            btnSalespos.Click += btnSalespos_Click;
             // 
             // pictureBox3
             // 
@@ -283,6 +288,7 @@
             btnCustomers.TabIndex = 52;
             btnCustomers.Text = "Customers";
             btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.Click += btnCustomers_Click;
             // 
             // btnUsers
             // 
@@ -295,6 +301,7 @@
             btnUsers.TabIndex = 48;
             btnUsers.Text = "Users";
             btnUsers.UseVisualStyleBackColor = false;
+            btnUsers.Click += btnUsers_Click;
             // 
             // pictureBox7
             // 
@@ -308,6 +315,7 @@
             // 
             // btnPO
             // 
+            btnPO.BackColor = Color.Green;
             btnPO.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnPO.ImageAlign = ContentAlignment.MiddleLeft;
             btnPO.Location = new Point(126, 539);
@@ -315,7 +323,8 @@
             btnPO.Size = new Size(157, 32);
             btnPO.TabIndex = 57;
             btnPO.Text = "Purchase Stock";
-            btnPO.UseVisualStyleBackColor = true;
+            btnPO.UseVisualStyleBackColor = false;
+            btnPO.Click += btnPO_Click;
             // 
             // pictureBox2
             // 
@@ -340,7 +349,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.Green;
+            btnDashboard.BackColor = Color.White;
             btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
@@ -350,6 +359,7 @@
             btnDashboard.TabIndex = 59;
             btnDashboard.Text = "Dasboard";
             btnDashboard.UseVisualStyleBackColor = false;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnBooks
             // 
@@ -361,6 +371,7 @@
             btnBooks.TabIndex = 50;
             btnBooks.Text = "Books";
             btnBooks.UseVisualStyleBackColor = true;
+            btnBooks.Click += btnBooks_Click;
             // 
             // DashboardPanel
             // 

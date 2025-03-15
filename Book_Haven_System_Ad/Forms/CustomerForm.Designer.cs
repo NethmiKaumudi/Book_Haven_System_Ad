@@ -341,6 +341,7 @@
             // 
             // btnCustomers
             // 
+            btnCustomers.BackColor = Color.Green;
             btnCustomers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
             btnCustomers.Location = new Point(132, 309);
@@ -348,7 +349,7 @@
             btnCustomers.Size = new Size(157, 32);
             btnCustomers.TabIndex = 33;
             btnCustomers.Text = "Customers";
-            btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.UseVisualStyleBackColor = false;
             btnCustomers.Click += btnCustomers_Click;
             // 
             // pictureBox7
@@ -373,7 +374,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.Green;
+            btnDashboard.BackColor = Color.White;
             btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;

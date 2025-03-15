@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ReportForm));
             groupBox2 = new GroupBox();
+            label7 = new Label();
             txtTotalOrder = new TextBox();
             txtTotalSales = new TextBox();
             label6 = new Label();
@@ -40,7 +41,6 @@
             label1 = new Label();
             endDatePicker = new DateTimePicker();
             cmbreportType = new ComboBox();
-            label3 = new Label();
             label13 = new Label();
             startDatePicker = new DateTimePicker();
             ButtonPanel = new Panel();
@@ -66,7 +66,6 @@
             pictureBox1 = new PictureBox();
             btnDashboard = new Button();
             btnBooks = new Button();
-            label7 = new Label();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)salesReportGrid).BeginInit();
             ButtonPanel.SuspendLayout();
@@ -96,7 +95,6 @@
             groupBox2.Controls.Add(label1);
             groupBox2.Controls.Add(endDatePicker);
             groupBox2.Controls.Add(cmbreportType);
-            groupBox2.Controls.Add(label3);
             groupBox2.Controls.Add(label13);
             groupBox2.Controls.Add(startDatePicker);
             groupBox2.Location = new Point(348, -3);
@@ -105,16 +103,26 @@
             groupBox2.TabIndex = 11;
             groupBox2.TabStop = false;
             // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label7.Location = new Point(31, 97);
+            label7.Name = "label7";
+            label7.Size = new Size(208, 28);
+            label7.TabIndex = 123;
+            label7.Text = "Report Management";
+            // 
             // txtTotalOrder
             // 
-            txtTotalOrder.Location = new Point(525, 624);
+            txtTotalOrder.Location = new Point(525, 612);
             txtTotalOrder.Name = "txtTotalOrder";
             txtTotalOrder.Size = new Size(203, 27);
             txtTotalOrder.TabIndex = 122;
             // 
             // txtTotalSales
             // 
-            txtTotalSales.Location = new Point(158, 624);
+            txtTotalSales.Location = new Point(158, 612);
             txtTotalSales.Name = "txtTotalSales";
             txtTotalSales.Size = new Size(203, 27);
             txtTotalSales.TabIndex = 121;
@@ -123,7 +131,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label6.Location = new Point(385, 625);
+            label6.Location = new Point(385, 613);
             label6.Name = "label6";
             label6.Size = new Size(106, 23);
             label6.TabIndex = 120;
@@ -133,7 +141,7 @@
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label5.Location = new Point(33, 625);
+            label5.Location = new Point(33, 613);
             label5.Name = "label5";
             label5.Size = new Size(103, 23);
             label5.TabIndex = 119;
@@ -142,7 +150,7 @@
             // salesReportGrid
             // 
             salesReportGrid.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            salesReportGrid.Location = new Point(33, 312);
+            salesReportGrid.Location = new Point(33, 300);
             salesReportGrid.Name = "salesReportGrid";
             salesReportGrid.RowHeadersWidth = 51;
             salesReportGrid.Size = new Size(929, 301);
@@ -154,7 +162,7 @@
             btnGenerateReport.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnGenerateReport.ForeColor = SystemColors.ActiveCaptionText;
             btnGenerateReport.ImageAlign = ContentAlignment.MiddleLeft;
-            btnGenerateReport.Location = new Point(599, 269);
+            btnGenerateReport.Location = new Point(599, 257);
             btnGenerateReport.Name = "btnGenerateReport";
             btnGenerateReport.Size = new Size(198, 37);
             btnGenerateReport.TabIndex = 115;
@@ -166,7 +174,7 @@
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label4.Location = new Point(26, 178);
+            label4.Location = new Point(26, 166);
             label4.Name = "label4";
             label4.Size = new Size(160, 23);
             label4.TabIndex = 114;
@@ -176,7 +184,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label1.Location = new Point(516, 218);
+            label1.Location = new Point(516, 206);
             label1.Name = "label1";
             label1.Size = new Size(89, 23);
             label1.TabIndex = 113;
@@ -184,7 +192,7 @@
             // 
             // endDatePicker
             // 
-            endDatePicker.Location = new Point(611, 214);
+            endDatePicker.Location = new Point(611, 202);
             endDatePicker.Name = "endDatePicker";
             endDatePicker.Size = new Size(322, 27);
             endDatePicker.TabIndex = 112;
@@ -193,27 +201,16 @@
             // 
             cmbreportType.FormattingEnabled = true;
             cmbreportType.Items.AddRange(new object[] { "Daily", "Weekly", "Monthly" });
-            cmbreportType.Location = new Point(210, 176);
+            cmbreportType.Location = new Point(210, 164);
             cmbreportType.Name = "cmbreportType";
             cmbreportType.Size = new Size(223, 28);
             cmbreportType.TabIndex = 111;
-            cmbreportType.SelectedIndexChanged += cmbreportType_SelectedIndexChanged;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(33, 10);
-            label3.Name = "label3";
-            label3.Size = new Size(197, 28);
-            label3.TabIndex = 110;
-            label3.Text = "Order Management";
             // 
             // label13
             // 
             label13.AutoSize = true;
             label13.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label13.Location = new Point(33, 219);
+            label13.Location = new Point(33, 207);
             label13.Name = "label13";
             label13.Size = new Size(96, 23);
             label13.TabIndex = 70;
@@ -221,7 +218,7 @@
             // 
             // startDatePicker
             // 
-            startDatePicker.Location = new Point(158, 215);
+            startDatePicker.Location = new Point(158, 203);
             startDatePicker.Name = "startDatePicker";
             startDatePicker.Size = new Size(322, 27);
             startDatePicker.TabIndex = 64;
@@ -278,6 +275,7 @@
             picLogout.Size = new Size(62, 55);
             picLogout.TabIndex = 22;
             picLogout.TabStop = false;
+            picLogout.Click += picLogout_Click;
             // 
             // pictureBox4
             // 
@@ -309,6 +307,7 @@
             btnOrders.TabIndex = 63;
             btnOrders.Text = "Sales Details";
             btnOrders.UseVisualStyleBackColor = true;
+            btnOrders.Click += btnOrders_Click;
             // 
             // lblusernameRole
             // 
@@ -322,6 +321,7 @@
             // 
             // btnReports
             // 
+            btnReports.BackColor = Color.Green;
             btnReports.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnReports.ImageAlign = ContentAlignment.MiddleLeft;
             btnReports.Location = new Point(125, 631);
@@ -329,7 +329,8 @@
             btnReports.Size = new Size(157, 32);
             btnReports.TabIndex = 61;
             btnReports.Text = "Reports";
-            btnReports.UseVisualStyleBackColor = true;
+            btnReports.UseVisualStyleBackColor = false;
+            btnReports.Click += btnReports_Click;
             // 
             // label2
             // 
@@ -372,6 +373,7 @@
             btnSuppliers.TabIndex = 54;
             btnSuppliers.Text = "Suppliers";
             btnSuppliers.UseVisualStyleBackColor = true;
+            btnSuppliers.Click += btnSuppliers_Click;
             // 
             // btnSalespos
             // 
@@ -383,6 +385,7 @@
             btnSalespos.TabIndex = 56;
             btnSalespos.Text = "Sales(POS)";
             btnSalespos.UseVisualStyleBackColor = true;
+            btnSalespos.Click += btnSalespos_Click;
             // 
             // pictureBox3
             // 
@@ -415,6 +418,7 @@
             btnCustomers.TabIndex = 52;
             btnCustomers.Text = "Customers";
             btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.Click += btnCustomers_Click;
             // 
             // btnUsers
             // 
@@ -427,6 +431,7 @@
             btnUsers.TabIndex = 48;
             btnUsers.Text = "Users";
             btnUsers.UseVisualStyleBackColor = false;
+            btnUsers.Click += btnUsers_Click;
             // 
             // pictureBox7
             // 
@@ -448,6 +453,7 @@
             btnPO.TabIndex = 57;
             btnPO.Text = "Purchase Stock";
             btnPO.UseVisualStyleBackColor = true;
+            btnPO.Click += btnPO_Click;
             // 
             // pictureBox2
             // 
@@ -472,7 +478,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.Green;
+            btnDashboard.BackColor = Color.White;
             btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
@@ -482,6 +488,7 @@
             btnDashboard.TabIndex = 59;
             btnDashboard.Text = "Dasboard";
             btnDashboard.UseVisualStyleBackColor = false;
+            btnDashboard.Click += btnDashboard_Click;
             // 
             // btnBooks
             // 
@@ -493,16 +500,7 @@
             btnBooks.TabIndex = 50;
             btnBooks.Text = "Books";
             btnBooks.UseVisualStyleBackColor = true;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(33, 109);
-            label7.Name = "label7";
-            label7.Size = new Size(208, 28);
-            label7.TabIndex = 123;
-            label7.Text = "Report Management";
+            btnBooks.Click += btnBooks_Click;
             // 
             // ReportForm
             // 
@@ -539,7 +537,6 @@
         private Label label1;
         private DateTimePicker endDatePicker;
         private ComboBox cmbreportType;
-        private Label label3;
         private Label label13;
         private DateTimePicker startDatePicker;
         private Panel ButtonPanel;

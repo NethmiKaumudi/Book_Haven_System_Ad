@@ -21,10 +21,43 @@ namespace Book_Haven__Application.Business.Services
         {
             _userRepository = new UserRepository();
         }
+        public bool AdminUserExists()
+        {
+            List<UserModel> users = _userRepository.GetAllUsers();
+            return users.Any(user => user.Role == "Admin");
+        }
 
+
+        public void CreateInitialAdminUser()
+        {
+            if (!AdminUserExists())
+            {
+                string adminUsername = "admin";
+                string adminPassword = "admin12345"; 
+                string adminRole = "Admin";
+
+                string hashedPassword = HashPassword(adminPassword);
+
+                UserModel adminUser = new UserModel
+                {
+                    UserID = Guid.NewGuid(),
+                    Username = adminUsername,
+                    PasswordHash = hashedPassword,
+                    Role = adminRole,
+                    DateCreated = DateTime.Now,
+                    IsDeleted = false
+                };
+
+                _userRepository.AddUser(adminUser); 
+                Console.WriteLine("Initial Admin user created.");
+            }
+            else
+            {
+                Console.WriteLine("Admin user already exists.");
+            }
+        }
         public void RegisterUser(string username, string password, string role)
         {
-            // Hash the password for storage
             string hashedPassword = HashPassword(password);
 
             UserModel user = new UserModel

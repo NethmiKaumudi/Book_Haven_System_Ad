@@ -11,6 +11,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Book_Haven_System_Ad.Forms
 {
@@ -18,6 +19,8 @@ namespace Book_Haven_System_Ad.Forms
     public partial class frmSupplierForm : Form
     {
         private readonly ISupplierService _supplierService;
+        public string Username { get; set; }
+        public string Role { get; set; }
         public frmSupplierForm()
         {
             InitializeComponent();
@@ -235,17 +238,15 @@ namespace Book_Haven_System_Ad.Forms
                 tblSuppliers.Columns["ContactPhone"].HeaderText = "Phone Number";
                 tblSuppliers.Columns["ContactEmail"].HeaderText = "Email Address";
 
-                // Hide unnecessary columns
                 foreach (DataGridViewColumn column in tblSuppliers.Columns)
                 {
                     if (column.Name != "SupplierID" && column.Name != "SupplierName" && column.Name != "ContactName" &&
-                        column.Name != "ContactPhone" && column.Name != "ContactEmail" )
+                        column.Name != "ContactPhone" && column.Name != "ContactEmail")
                     {
                         column.Visible = false;
                     }
                 }
 
-                // Auto-size columns to fit the DataGridView width
                 tblSuppliers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
             catch (Exception ex)
@@ -269,15 +270,12 @@ namespace Book_Haven_System_Ad.Forms
         {
             string searchQuery = txtSerach.Text.Trim().ToLower();
 
-            // If the search query is empty, reset the list or show all records
             if (string.IsNullOrEmpty(searchQuery))
             {
-                // Example: Show all suppliers or reload the original list
                 LoadSuppliers();
                 return;
             }
 
-            // Filter suppliers or items based on the search query
             var filteredSuppliers = _supplierService.GetAll()
                 .Where(s => s.SupplierName.ToLower().Contains(searchQuery) ||
                             s.ContactName.ToLower().Contains(searchQuery) ||
@@ -285,8 +283,83 @@ namespace Book_Haven_System_Ad.Forms
                             s.ContactPhone.Contains(searchQuery))
                 .ToList();
 
-            // Display the filtered list (this may vary depending on your UI setup)
             tblSuppliers.DataSource = filteredSuppliers;
+
+        }
+        public void SetUserInfo(string username, string role)
+        {
+            Username = username;
+            Role = role;
+            lblusernameRole.Text = $"{username} - {role}";
+            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        }
+
+        private void picLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                frmLogin loginForm = new frmLogin();
+                loginForm.Show();
+                this.Hide();
+
+            }
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmUser());
+
+        }
+
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            frmAdminDashboard adminDashboard = new frmAdminDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmBookForm());
+
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
+
+        }
+
+        private void btnSalespos_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSales(Username));
+
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
+
+        }
+
+        private void btnSuppliers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSupplierForm());
+
+        }
+
+        private void btnPO_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmPurchaseOrderForm());
+
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new ReportForm());
 
         }
     }

@@ -49,42 +49,42 @@
             tblSuppliers = new DataGridView();
             label1 = new Label();
             ButtonPanel = new Panel();
-            picLogout = new PictureBox();
-            lbldate = new Label();
-            lblusernameRole = new Label();
-            label2 = new Label();
             pictureBox6 = new PictureBox();
+            picLogout = new PictureBox();
             pictureBox4 = new PictureBox();
+            lbldate = new Label();
             btnOrders = new Button();
+            lblusernameRole = new Label();
             btnReports = new Button();
+            label2 = new Label();
             pictureBox8 = new PictureBox();
-            btnSuppliers = new Button();
             pictureBox9 = new PictureBox();
-            pictureBox5 = new PictureBox();
-            btnUsers = new Button();
-            btnPO = new Button();
-            pictureBox1 = new PictureBox();
-            btnBooks = new Button();
-            btnDashboard = new Button();
-            pictureBox2 = new PictureBox();
-            pictureBox7 = new PictureBox();
-            btnCustomers = new Button();
-            pictureBox3 = new PictureBox();
+            btnSuppliers = new Button();
             btnSalespos = new Button();
+            pictureBox3 = new PictureBox();
+            pictureBox5 = new PictureBox();
+            btnCustomers = new Button();
+            btnUsers = new Button();
+            pictureBox7 = new PictureBox();
+            btnPO = new Button();
+            pictureBox2 = new PictureBox();
+            pictureBox1 = new PictureBox();
+            btnDashboard = new Button();
+            btnBooks = new Button();
             DashboardPanel.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblSuppliers).BeginInit();
             ButtonPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogout).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // DashboardPanel
@@ -347,6 +347,17 @@
             ButtonPanel.Size = new Size(348, 662);
             ButtonPanel.TabIndex = 11;
             // 
+            // pictureBox6
+            // 
+            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
+            pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox6.ErrorImage = (Image)resources.GetObject("pictureBox6.ErrorImage");
+            pictureBox6.Location = new Point(68, 306);
+            pictureBox6.Name = "pictureBox6";
+            pictureBox6.Size = new Size(37, 42);
+            pictureBox6.TabIndex = 65;
+            pictureBox6.TabStop = false;
+            // 
             // picLogout
             // 
             picLogout.BackColor = Color.Transparent;
@@ -358,6 +369,17 @@
             picLogout.Size = new Size(62, 55);
             picLogout.TabIndex = 22;
             picLogout.TabStop = false;
+            picLogout.Click += picLogout_Click;
+            // 
+            // pictureBox4
+            // 
+            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
+            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox4.Location = new Point(68, 414);
+            pictureBox4.Name = "pictureBox4";
+            pictureBox4.Size = new Size(37, 42);
+            pictureBox4.TabIndex = 64;
+            pictureBox4.TabStop = false;
             // 
             // lbldate
             // 
@@ -369,6 +391,18 @@
             lbldate.Size = new Size(0, 23);
             lbldate.TabIndex = 21;
             // 
+            // btnOrders
+            // 
+            btnOrders.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnOrders.ImageAlign = ContentAlignment.MiddleLeft;
+            btnOrders.Location = new Point(136, 421);
+            btnOrders.Name = "btnOrders";
+            btnOrders.Size = new Size(157, 32);
+            btnOrders.TabIndex = 63;
+            btnOrders.Text = "Sales Details";
+            btnOrders.UseVisualStyleBackColor = true;
+            btnOrders.Click += btnOrders_Click;
+            // 
             // lblusernameRole
             // 
             lblusernameRole.AutoSize = true;
@@ -378,6 +412,18 @@
             lblusernameRole.Name = "lblusernameRole";
             lblusernameRole.Size = new Size(0, 23);
             lblusernameRole.TabIndex = 20;
+            // 
+            // btnReports
+            // 
+            btnReports.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnReports.ImageAlign = ContentAlignment.MiddleLeft;
+            btnReports.Location = new Point(136, 590);
+            btnReports.Name = "btnReports";
+            btnReports.Size = new Size(157, 32);
+            btnReports.TabIndex = 61;
+            btnReports.Text = "Reports";
+            btnReports.UseVisualStyleBackColor = true;
+            btnReports.Click += btnReports_Click;
             // 
             // label2
             // 
@@ -390,49 +436,6 @@
             label2.TabIndex = 19;
             label2.Text = "Dashboard";
             // 
-            // pictureBox6
-            // 
-            pictureBox6.BackgroundImage = (Image)resources.GetObject("pictureBox6.BackgroundImage");
-            pictureBox6.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox6.ErrorImage = (Image)resources.GetObject("pictureBox6.ErrorImage");
-            pictureBox6.Location = new Point(68, 306);
-            pictureBox6.Name = "pictureBox6";
-            pictureBox6.Size = new Size(37, 42);
-            pictureBox6.TabIndex = 65;
-            pictureBox6.TabStop = false;
-            // 
-            // pictureBox4
-            // 
-            pictureBox4.BackgroundImage = (Image)resources.GetObject("pictureBox4.BackgroundImage");
-            pictureBox4.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox4.Location = new Point(68, 414);
-            pictureBox4.Name = "pictureBox4";
-            pictureBox4.Size = new Size(37, 42);
-            pictureBox4.TabIndex = 64;
-            pictureBox4.TabStop = false;
-            // 
-            // btnOrders
-            // 
-            btnOrders.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOrders.ImageAlign = ContentAlignment.MiddleLeft;
-            btnOrders.Location = new Point(136, 421);
-            btnOrders.Name = "btnOrders";
-            btnOrders.Size = new Size(157, 32);
-            btnOrders.TabIndex = 63;
-            btnOrders.Text = "Sales Details";
-            btnOrders.UseVisualStyleBackColor = true;
-            // 
-            // btnReports
-            // 
-            btnReports.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnReports.ImageAlign = ContentAlignment.MiddleLeft;
-            btnReports.Location = new Point(136, 590);
-            btnReports.Name = "btnReports";
-            btnReports.Size = new Size(157, 32);
-            btnReports.TabIndex = 61;
-            btnReports.Text = "Reports";
-            btnReports.UseVisualStyleBackColor = true;
-            // 
             // pictureBox8
             // 
             pictureBox8.BackgroundImage = (Image)resources.GetObject("pictureBox8.BackgroundImage");
@@ -443,17 +446,6 @@
             pictureBox8.TabIndex = 62;
             pictureBox8.TabStop = false;
             // 
-            // btnSuppliers
-            // 
-            btnSuppliers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSuppliers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSuppliers.Location = new Point(136, 482);
-            btnSuppliers.Name = "btnSuppliers";
-            btnSuppliers.Size = new Size(157, 32);
-            btnSuppliers.TabIndex = 54;
-            btnSuppliers.Text = "Suppliers";
-            btnSuppliers.UseVisualStyleBackColor = true;
-            // 
             // pictureBox9
             // 
             pictureBox9.BackgroundImage = (Image)resources.GetObject("pictureBox9.BackgroundImage");
@@ -463,6 +455,41 @@
             pictureBox9.Size = new Size(37, 42);
             pictureBox9.TabIndex = 60;
             pictureBox9.TabStop = false;
+            // 
+            // btnSuppliers
+            // 
+            btnSuppliers.BackColor = Color.Green;
+            btnSuppliers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSuppliers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSuppliers.Location = new Point(136, 482);
+            btnSuppliers.Name = "btnSuppliers";
+            btnSuppliers.Size = new Size(157, 32);
+            btnSuppliers.TabIndex = 54;
+            btnSuppliers.Text = "Suppliers";
+            btnSuppliers.UseVisualStyleBackColor = false;
+            btnSuppliers.Click += btnSuppliers_Click;
+            // 
+            // btnSalespos
+            // 
+            btnSalespos.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSalespos.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSalespos.Location = new Point(136, 370);
+            btnSalespos.Name = "btnSalespos";
+            btnSalespos.Size = new Size(157, 32);
+            btnSalespos.TabIndex = 56;
+            btnSalespos.Text = "Sales(POS)";
+            btnSalespos.UseVisualStyleBackColor = true;
+            btnSalespos.Click += btnSalespos_Click;
+            // 
+            // pictureBox3
+            // 
+            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
+            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox3.Location = new Point(68, 360);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(37, 42);
+            pictureBox3.TabIndex = 53;
+            pictureBox3.TabStop = false;
             // 
             // pictureBox5
             // 
@@ -475,6 +502,18 @@
             pictureBox5.TabIndex = 55;
             pictureBox5.TabStop = false;
             // 
+            // btnCustomers
+            // 
+            btnCustomers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
+            btnCustomers.Location = new Point(136, 315);
+            btnCustomers.Name = "btnCustomers";
+            btnCustomers.Size = new Size(157, 32);
+            btnCustomers.TabIndex = 52;
+            btnCustomers.Text = "Customers";
+            btnCustomers.UseVisualStyleBackColor = true;
+            btnCustomers.Click += btnCustomers_Click;
+            // 
             // btnUsers
             // 
             btnUsers.BackColor = Color.Transparent;
@@ -486,6 +525,17 @@
             btnUsers.TabIndex = 48;
             btnUsers.Text = "Users";
             btnUsers.UseVisualStyleBackColor = false;
+            btnUsers.Click += btnUsers_Click;
+            // 
+            // pictureBox7
+            // 
+            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
+            pictureBox7.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox7.Location = new Point(68, 530);
+            pictureBox7.Name = "pictureBox7";
+            pictureBox7.Size = new Size(37, 42);
+            pictureBox7.TabIndex = 58;
+            pictureBox7.TabStop = false;
             // 
             // btnPO
             // 
@@ -497,6 +547,17 @@
             btnPO.TabIndex = 57;
             btnPO.Text = "Purchase Stock";
             btnPO.UseVisualStyleBackColor = true;
+            btnPO.Click += btnPO_Click;
+            // 
+            // pictureBox2
+            // 
+            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
+            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
+            pictureBox2.Location = new Point(68, 248);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(37, 42);
+            pictureBox2.TabIndex = 51;
+            pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
@@ -509,6 +570,20 @@
             pictureBox1.TabIndex = 49;
             pictureBox1.TabStop = false;
             // 
+            // btnDashboard
+            // 
+            btnDashboard.BackColor = Color.White;
+            btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
+            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
+            btnDashboard.Location = new Point(136, 146);
+            btnDashboard.Name = "btnDashboard";
+            btnDashboard.Size = new Size(157, 32);
+            btnDashboard.TabIndex = 59;
+            btnDashboard.Text = "Dasboard";
+            btnDashboard.UseVisualStyleBackColor = false;
+            btnDashboard.Click += btnDashboard_Click;
+            // 
             // btnBooks
             // 
             btnBooks.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -519,71 +594,7 @@
             btnBooks.TabIndex = 50;
             btnBooks.Text = "Books";
             btnBooks.UseVisualStyleBackColor = true;
-            // 
-            // btnDashboard
-            // 
-            btnDashboard.BackColor = Color.Green;
-            btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
-            btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDashboard.Location = new Point(136, 146);
-            btnDashboard.Name = "btnDashboard";
-            btnDashboard.Size = new Size(157, 32);
-            btnDashboard.TabIndex = 59;
-            btnDashboard.Text = "Dasboard";
-            btnDashboard.UseVisualStyleBackColor = false;
-            // 
-            // pictureBox2
-            // 
-            pictureBox2.BackgroundImage = (Image)resources.GetObject("pictureBox2.BackgroundImage");
-            pictureBox2.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox2.Location = new Point(68, 248);
-            pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(37, 42);
-            pictureBox2.TabIndex = 51;
-            pictureBox2.TabStop = false;
-            // 
-            // pictureBox7
-            // 
-            pictureBox7.BackgroundImage = (Image)resources.GetObject("pictureBox7.BackgroundImage");
-            pictureBox7.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox7.Location = new Point(68, 530);
-            pictureBox7.Name = "pictureBox7";
-            pictureBox7.Size = new Size(37, 42);
-            pictureBox7.TabIndex = 58;
-            pictureBox7.TabStop = false;
-            // 
-            // btnCustomers
-            // 
-            btnCustomers.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCustomers.ImageAlign = ContentAlignment.MiddleLeft;
-            btnCustomers.Location = new Point(136, 315);
-            btnCustomers.Name = "btnCustomers";
-            btnCustomers.Size = new Size(157, 32);
-            btnCustomers.TabIndex = 52;
-            btnCustomers.Text = "Customers";
-            btnCustomers.UseVisualStyleBackColor = true;
-            // 
-            // pictureBox3
-            // 
-            pictureBox3.BackgroundImage = (Image)resources.GetObject("pictureBox3.BackgroundImage");
-            pictureBox3.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox3.Location = new Point(68, 360);
-            pictureBox3.Name = "pictureBox3";
-            pictureBox3.Size = new Size(37, 42);
-            pictureBox3.TabIndex = 53;
-            pictureBox3.TabStop = false;
-            // 
-            // btnSalespos
-            // 
-            btnSalespos.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSalespos.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSalespos.Location = new Point(136, 370);
-            btnSalespos.Name = "btnSalespos";
-            btnSalespos.Size = new Size(157, 32);
-            btnSalespos.TabIndex = 56;
-            btnSalespos.Text = "Sales(POS)";
-            btnSalespos.UseVisualStyleBackColor = true;
+            btnBooks.Click += btnBooks_Click;
             // 
             // frmSupplierForm
             // 
@@ -601,16 +612,16 @@
             ((System.ComponentModel.ISupportInitialize)tblSuppliers).EndInit();
             ButtonPanel.ResumeLayout(false);
             ButtonPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)picLogout).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox6).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogout).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox4).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox8).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox9).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox5).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox7).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
         }
 

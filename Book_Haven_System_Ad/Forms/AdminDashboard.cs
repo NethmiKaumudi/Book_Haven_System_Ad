@@ -254,9 +254,7 @@ namespace Book_Haven_System_Ad.Forms
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                // Logic for logging out (e.g., clear session, close form)
-
-                // For example: Show the login form
+                
                 frmLogin loginForm = new frmLogin();
                 loginForm.Show();
                 this.Hide();
@@ -275,41 +273,47 @@ namespace Book_Haven_System_Ad.Forms
 
         private void btnUsers_Click(object sender, EventArgs e)
         {
+            NavigationHelper.OpenForm(this, new frmUser());
 
         }
 
         private void btnBooks_Click(object sender, EventArgs e)
         {
+            NavigationHelper.OpenForm(this, new frmBookForm());
 
         }
 
         private void btnCustomers_Click(object sender, EventArgs e)
         {
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
 
         }
 
         private void btnSalespos_Click(object sender, EventArgs e)
         {
-
+            NavigationHelper.OpenForm(this, new frmSales(Username));
         }
 
         private void btnOrders_Click(object sender, EventArgs e)
         {
+            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
 
         }
 
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
-
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
         }
 
         private void btnPO_Click(object sender, EventArgs e)
         {
+            NavigationHelper.OpenForm(this, new frmPurchaseOrderForm());
 
         }
 
         private void btnReports_Click(object sender, EventArgs e)
         {
+            NavigationHelper.OpenForm(this, new ReportForm());
 
         }
     }

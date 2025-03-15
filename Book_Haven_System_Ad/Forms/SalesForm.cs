@@ -23,11 +23,11 @@ namespace Book_Haven_System_Ad.Forms
     {
         private readonly IOrderService _orderService;
         private string _loggedInUser;
-        private readonly ICustomerService _customerService; // Add customer service
+        private readonly ICustomerService _customerService;
         private readonly IBookService _bookService;
         private readonly IUserService _userService;
-        private Guid _selectedBookId = Guid.Empty; // Default to an empty GUID
-        private Guid customerId = Guid.Empty; // Declare a local variable to hold CustomerID
+        private Guid _selectedBookId = Guid.Empty;
+        private Guid customerId = Guid.Empty;
         public string Username { get; set; }
         public string Role { get; set; }
 
@@ -46,17 +46,15 @@ namespace Book_Haven_System_Ad.Forms
             txtOrderUserName.Text = _loggedInUser;
             txtOrderUserName.ReadOnly = true;
 
-            // Set up the DataGridView
             SetupDataGridView();
-            // Populate discount dropdown with percentage values
             cmbDiscount.Items.Clear();
-            cmbDiscount.Items.Add("0");  // No discount
+            cmbDiscount.Items.Add("0");
             cmbDiscount.Items.Add("5");
             cmbDiscount.Items.Add("10");
             cmbDiscount.Items.Add("15");
             cmbDiscount.Items.Add("20");
 
-            cmbDiscount.SelectedIndex = 0; // Set default selection to 0%
+            cmbDiscount.SelectedIndex = 0;
 
         }
 
@@ -127,17 +125,15 @@ namespace Book_Haven_System_Ad.Forms
 
         private void txtCustomerNumber_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter) // Check if Enter key is pressed
+            if (e.KeyCode == Keys.Enter)
             {
                 string customerNumber = txtCustomerNumber.Text.Trim();
                 if (!string.IsNullOrEmpty(customerNumber))
                 {
-                    // Fetch customer details (Name and ID) using a service
                     CustomerModel customer = _customerService.GetCustomerDetailsByNumber(customerNumber);
 
                     if (customer != null)
                     {
-                        // If customer is found, fill in the name and store the customer ID
                         txtCustomerName.Text = customer.Name; // Assuming CustomerName property in CustomerModel
                         customerId = customer.CustomerID; // Assign the Guid
                     }
@@ -174,30 +170,25 @@ namespace Book_Haven_System_Ad.Forms
 
                 if (!string.IsNullOrEmpty(bookName))
                 {
-                    // Fetch book details based on book name
+
                     BookModel book = _bookService.GetBookByName(bookName);
 
                     if (book != null)
                     {
-                        // Store bookId for later use
                         _selectedBookId = book.BookID;
 
-                        // Set other details
                         txtAuthor.Text = book.Author;
                         txtPrize.Text = book.Price.ToString("F2");
 
-                        // Move focus to Quantity textbox
                         txtOrderQty.Focus();
                     }
                     else
                     {
-                        // Display error message
                         MessageBox.Show("Book not found. Please enter a valid book name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        _selectedBookId = Guid.Empty; // Reset bookId
+                        _selectedBookId = Guid.Empty;
                     }
                 }
 
-                // Prevent default behavior
                 e.Handled = true;
                 e.SuppressKeyPress = true;
             }
@@ -212,11 +203,11 @@ namespace Book_Haven_System_Ad.Forms
 
                 if (selectedMethod == "POS")
                 {
-                    groupBoxOnlineOrder.Visible = false; // Hide the combo box if POS is selected
+                    groupBoxOnlineOrder.Visible = false;
                 }
                 else if (selectedMethod == "Online")
                 {
-                    groupBoxOnlineOrder.Visible = true; // Show the combo box if Online is selected
+                    groupBoxOnlineOrder.Visible = true;
                     groupBoxPosOrders.Visible = false;
                 }
             }
@@ -226,7 +217,6 @@ namespace Book_Haven_System_Ad.Forms
         {
             if (cmbDiscount.SelectedItem != null)
             {
-                // Get the subtotal directly from the CalculateSubTotalAmount() method
                 decimal subTotal = CalculateSubTotalAmount();
 
                 if (int.TryParse(cmbDiscount.SelectedItem.ToString(), out int discountPercentage))
@@ -234,20 +224,18 @@ namespace Book_Haven_System_Ad.Forms
                     decimal discountAmount = (subTotal * discountPercentage) / 100;
                     decimal total = subTotal - discountAmount;
 
-                    txtOrderTotal.Text = total.ToString("F2"); // Update txtOrderTotal
+                    txtOrderTotal.Text = total.ToString("F2");
                 }
             }
         }
 
         private void btnAddtoOrderCart_Click_1(object sender, EventArgs e)
         {
-            // Retrieve values from the text fields
             string bookName = txtBookName.Text.Trim();
             string author = txtAuthor.Text.Trim();
             decimal price = 0;
             int quantity = 0;
 
-            // Check if all fields are valid
             if (string.IsNullOrEmpty(bookName) || string.IsNullOrEmpty(author) ||
                 !decimal.TryParse(txtPrize.Text, out price) || !int.TryParse(txtOrderQty.Text, out quantity))
             {
@@ -255,15 +243,12 @@ namespace Book_Haven_System_Ad.Forms
                 return;
             }
 
-            // Check if the book already exists in the DataGridView
             bool bookExists = false;
             foreach (DataGridViewRow row in tblOrderCart.Rows)
             {
-                // Check if the BookName and Author match
                 if (row.Cells["BookName"].Value != null && row.Cells["BookName"].Value.ToString() == bookName &&
                     row.Cells["Author"].Value != null && row.Cells["Author"].Value.ToString() == author)
                 {
-                    // Update the quantity of the existing book
                     row.Cells["Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value) + quantity;
                     bookExists = true;
                     break;
@@ -272,11 +257,9 @@ namespace Book_Haven_System_Ad.Forms
 
             if (!bookExists)
             {
-                // Add the book information to the DataGridView (tblSelectedBooks)
                 tblOrderCart.Rows.Add(_selectedBookId, bookName, author, price.ToString("F2"), quantity);
             }
 
-            // Clear the text fields after adding
             txtBookName.Clear();
             txtAuthor.Clear();
             txtPrize.Clear();
@@ -288,41 +271,33 @@ namespace Book_Haven_System_Ad.Forms
 
 
 
-            // Recalculate total amount after adding the book
             CalculateSubTotalAmount();
         }
 
         private void tblOrderCart_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             {
-                // Check if the clicked column is the 'Remove' column
                 if (e.ColumnIndex == tblOrderCart.Columns["Remove"].Index && e.RowIndex >= 0)
                 {
                     try
                     {
-                        // Remove the selected row
                         tblOrderCart.Rows.RemoveAt(e.RowIndex);
 
-                        // Recalculate the total amount after removal
                         CalculateSubTotalAmount();
                     }
                     catch (InvalidOperationException ex)
                     {
-                        // Optionally, show a message if the row removal fails
                         MessageBox.Show("Cannot remove the new row.", "Error");
                     }
                 }
-                else if (e.RowIndex >= 0 && e.ColumnIndex >= 0) // For all other columns
+                else if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
-                    // Get the selected row
                     DataGridViewRow selectedRow = tblOrderCart.Rows[e.RowIndex];
 
-                    // Populate the text fields with values from the selected row
                     txtBookName.Text = selectedRow.Cells["BookName"].Value?.ToString() ?? "";
                     txtAuthor.Text = selectedRow.Cells["Author"].Value?.ToString() ?? "";
                     txtPrize.Text = selectedRow.Cells["Price"].Value?.ToString() ?? "";
 
-                    // Clear the txtQuantity field to allow the user to input a new quantity
                     txtOrderQty.Clear();
                 }
             }
@@ -333,11 +308,11 @@ namespace Book_Haven_System_Ad.Forms
             if (decimal.TryParse(txtOrderTotal.Text, out decimal orderTotal) && decimal.TryParse(txtAmountPaid.Text, out decimal amountPaid))
             {
                 decimal change = amountPaid - orderTotal;
-                txtChange.Text = change.ToString("F2"); // Format to 2 decimal places
+                txtChange.Text = change.ToString("F2");
             }
             else
             {
-                txtChange.Text = "0.00"; // Default to 0 if input is invalid
+                txtChange.Text = "0.00";
             }
 
         }
@@ -347,7 +322,6 @@ namespace Book_Haven_System_Ad.Forms
         {
             try
             {
-                // Check if customer is selected
                 if (customerId == Guid.Empty)
                 {
                     MessageBox.Show("Please select a customer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -360,15 +334,15 @@ namespace Book_Haven_System_Ad.Forms
                 string deliveryAddress = txtDeliveryAddress.Text.Trim();
                 DateTime orderDate = dtpPosDate.Value;
                 string OrderSource = cmbOrderMethod.SelectedItem?.ToString();
-                decimal amountPaid = decimal.TryParse(txtAmountPaid.Text, out decimal paid) ? paid : 0; // Parse amount paid
-                decimal changeAmount = decimal.TryParse(txtChange.Text, out decimal change) ? change : 0; // Parse change amount
+                decimal amountPaid = decimal.TryParse(txtAmountPaid.Text, out decimal paid) ? paid : 0;
+                decimal changeAmount = decimal.TryParse(txtChange.Text, out decimal change) ? change : 0;
                 OrderModel order = new OrderModel
                 {
                     OrderID = txtOrderId.Text,
                     CustomerID = customerId,
                     TotalAmount = totalAmount,
                     OrderDate = orderDate,
-                    OrderSource = OrderSource, // Use orderSource here
+                    OrderSource = OrderSource,
                 };
 
                 // Set Status, Delivery, and ProcessedBy based on Order Type
@@ -380,7 +354,8 @@ namespace Book_Haven_System_Ad.Forms
                     order.ProcessedBy = txtOrderUserName.Text.Trim();
 
                 }
-                else if (OrderSource == "Online")  // Explicitly check for "Online"
+                // Explicitly check for "Online"
+                else if (OrderSource == "Online")
                 {
                     if (deliveryType == "In-Store Pickup")
                     {
@@ -414,7 +389,6 @@ namespace Book_Haven_System_Ad.Forms
                     return;
                 }
 
-                // Collect Order Details from DataGridView
                 List<OrderDetailsModel> orderDetails = new List<OrderDetailsModel>();
                 foreach (DataGridViewRow row in tblOrderCart.Rows)
                 {
@@ -424,7 +398,7 @@ namespace Book_Haven_System_Ad.Forms
                         {
                             OrderDetailID = Guid.NewGuid(),
                             OrderId = order.OrderID,
-                            BookID = new Guid(row.Cells["BookID"].Value.ToString()),  // Get BookID from DataGridView
+                            BookID = new Guid(row.Cells["BookID"].Value.ToString()),
                             Quantity = int.Parse(row.Cells["Quantity"].Value.ToString()),
                             Price = decimal.Parse(row.Cells["Price"].Value.ToString())
                         };
@@ -432,12 +406,10 @@ namespace Book_Haven_System_Ad.Forms
                     }
                 }
 
-                // Call the service to save order
                 _orderService.AddOrder(order, orderDetails);
 
                 MessageBox.Show("Order successfully placed!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Trigger print receipt
                 PrintReceipt(order, orderDetails);
 
                 ClearOrderForm();
@@ -463,7 +435,7 @@ namespace Book_Haven_System_Ad.Forms
             // Order Information
             receipt.AppendLine($"Order ID: {order.OrderID}");
             receipt.AppendLine($"Customer ID: {order.CustomerID}");
-            receipt.AppendLine($"Date: {order.OrderDate:yyyy-MM-dd HH:mm:ss}"); // Format date
+            receipt.AppendLine($"Date: {order.OrderDate:yyyy-MM-dd HH:mm:ss}");
             receipt.AppendLine();
 
             // Items Header
@@ -475,7 +447,7 @@ namespace Book_Haven_System_Ad.Forms
             // Order Details
             foreach (var detail in orderDetails)
             {
-                receipt.AppendLine($"{detail.BookID,-7} | {detail.Quantity,-3} | {detail.Price,8:C}"); // Formatted columns
+                receipt.AppendLine($"{detail.BookID,-7} | {detail.Quantity,-3} | {detail.Price,8:C}");
             }
 
             receipt.AppendLine("-------------------------------");
@@ -520,13 +492,74 @@ namespace Book_Haven_System_Ad.Forms
             }
         }
 
-        private void btnDashboard_Click(object sender, EventArgs e)
-        {
 
-        }
 
         private void picLogout_Click(object sender, EventArgs e)
         {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                frmLogin loginForm = new frmLogin();
+                loginForm.Show();
+                this.Hide();
+
+
+            }
+        }
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            frmAdminDashboard adminDashboard = new frmAdminDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.Show();
+            this.Hide();
+        }
+
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmUser());
+
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmBookForm());
+
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
+
+        }
+
+        private void btnSalespos_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSales(Username));
+
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
+
+        }
+
+        private void btnSuppliers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSupplierForm());
+
+        }
+
+        private void btnPO_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmPurchaseOrderForm());
+
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new ReportForm());
 
         }
     }

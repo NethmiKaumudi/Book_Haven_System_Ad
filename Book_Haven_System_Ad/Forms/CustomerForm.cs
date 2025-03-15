@@ -307,7 +307,6 @@ namespace Book_Haven_System_Ad.Forms
         }
 
 
-
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
             NavigationHelper.OpenForm(this, new frmCustomerForm());

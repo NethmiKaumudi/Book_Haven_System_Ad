@@ -680,7 +680,7 @@
             // 
             // btnDashboard
             // 
-            btnDashboard.BackColor = Color.Green;
+            btnDashboard.BackColor = Color.White;
             btnDashboard.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDashboard.ForeColor = SystemColors.ActiveCaptionText;
             btnDashboard.ImageAlign = ContentAlignment.MiddleLeft;
@@ -704,7 +704,7 @@
             // 
             // btnSalespos
             // 
-            btnSalespos.BackColor = Color.White;
+            btnSalespos.BackColor = Color.Green;
             btnSalespos.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSalespos.ImageAlign = ContentAlignment.MiddleLeft;
             btnSalespos.Location = new Point(138, 297);

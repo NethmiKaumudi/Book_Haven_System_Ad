@@ -15,6 +15,8 @@ namespace Book_Haven_System_Ad.Forms
     public partial class ReportForm : Form
     {
         private readonly IOrderService orderService;
+        public string Username { get; set; }
+        public string Role { get; set; }
         public ReportForm()
         {
             InitializeComponent();
@@ -30,10 +32,8 @@ namespace Book_Haven_System_Ad.Forms
         {
             try
             {
-                // Get report type
                 string reportType = cmbreportType.SelectedItem?.ToString();
 
-                // Get start and end dates
                 DateTime startDate = startDatePicker.Value.Date;
                 DateTime endDate = endDatePicker.Value.Date;
 
@@ -43,14 +43,11 @@ namespace Book_Haven_System_Ad.Forms
                     return;
                 }
 
-                // Fetch Sales Report
                 var salesReport = orderService.GetSalesReport(startDate, endDate, reportType);
 
-                // Display the report in the DataGridView
                 salesReportGrid.DataSource = salesReport;
                 salesReportGrid.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                // Calculate Total Sales and Total Orders
                 decimal totalSales = 0;
                 int totalOrders = salesReport.Count;
 
@@ -59,8 +56,8 @@ namespace Book_Haven_System_Ad.Forms
                     totalSales += report.TotalSales;
                 }
 
-                txtTotalSales.Text = $"Total Sales: RS{totalSales:F2}";
-                txtTotalOrder.Text = $"Total Orders: {totalOrders}";
+                txtTotalSales.Text = $" RS{totalSales:F2}";
+                txtTotalOrder.Text = $" {totalOrders}";
 
                 //// Best Selling Books Report
                 //var bestSellingBooks = orderService.GetBestSellingBooksReport(startDate, endDate);
@@ -78,8 +75,80 @@ namespace Book_Haven_System_Ad.Forms
             }
         }
 
-        private void cmbreportType_SelectedIndexChanged(object sender, EventArgs e)
+
+        public void SetUserInfo(string username, string role)
         {
+            Username = username;
+            Role = role;
+            lblusernameRole.Text = $"{username} - {role}";
+            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        }
+
+        private void picLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                frmLogin loginForm = new frmLogin();
+                loginForm.Show();
+                this.Hide();
+
+
+            }
+        }
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+            frmAdminDashboard adminDashboard = new frmAdminDashboard();
+            adminDashboard.SetUserInfo(this.Username, this.Role);
+            adminDashboard.Show();
+            this.Hide();
+        }
+        private void btnUsers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmUser());
+
+        }
+
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmBookForm());
+
+        }
+
+        private void btnCustomers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmCustomerForm());
+
+        }
+
+        private void btnSalespos_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSales(Username));
+
+        }
+
+        private void btnOrders_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSalesDetailsForm());
+
+        }
+
+        private void btnSuppliers_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmSupplierForm());
+
+        }
+
+        private void btnPO_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new frmPurchaseOrderForm());
+
+        }
+
+        private void btnReports_Click(object sender, EventArgs e)
+        {
+            NavigationHelper.OpenForm(this, new ReportForm());
 
         }
     }
