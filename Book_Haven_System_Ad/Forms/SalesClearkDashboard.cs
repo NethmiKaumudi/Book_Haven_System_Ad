@@ -22,6 +22,11 @@ namespace Book_Haven_System_Ad.Forms
         {
 
             InitializeComponent();
+            Username = UserSession.Instance.Username;
+            Role = UserSession.Instance.Role;
+
+            lblusernameRole.Text = $"{Username} - {Role}";
+            lbldate.Text = $"Today: {DateTime.Now:yyyy-MM-dd}";
             _bookService = new BookService();
 
             LoadBooks();
@@ -83,25 +88,25 @@ namespace Book_Haven_System_Ad.Forms
                 tblBooks.DataSource = filteredBooks;
             }
         }
-        public void SetUserInfo(string username, string role)
-        {
-            Username = username;
-            Role = role;
-            lblusernameRole.Text = $"{username} - {role}";
-            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
-        }
+        //public void SetUserInfo(string username, string role)
+        //{
+        //    Username = username;
+        //    Role = role;
+        //    lblusernameRole.Text = $"{username} - {role}";
+        //    lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        //}
 
         private void picLogout_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                // Clear user session on logout
+                UserSession.Instance.Logout();
 
                 frmLogin loginForm = new frmLogin();
                 loginForm.Show();
                 this.Hide();
-
-
             }
         }
 
@@ -120,7 +125,7 @@ namespace Book_Haven_System_Ad.Forms
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             SalesClearkDashboard adminDashboard = new SalesClearkDashboard();
-            adminDashboard.SetUserInfo(this.Username, this.Role);
+            //adminDashboard.SetUserInfo(this.Username, this.Role);
             adminDashboard.Show();
             this.Hide();
         }

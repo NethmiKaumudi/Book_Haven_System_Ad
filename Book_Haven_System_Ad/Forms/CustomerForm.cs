@@ -24,6 +24,11 @@ namespace Book_Haven_System_Ad.Forms
         public frmCustomerForm()
         {
             InitializeComponent();
+            Username = UserSession.Instance.Username;
+            Role = UserSession.Instance.Role;
+
+            lblusernameRole.Text = $"{Username} - {Role}";
+            lbldate.Text = $"Today: {DateTime.Now:yyyy-MM-dd}";
             _customerService = new CustomerService();
             LoadCustomers();
         }
@@ -266,18 +271,18 @@ namespace Book_Haven_System_Ad.Forms
                 tblCustomers.DataSource = filteredCustomers;
             }
         }
-        public void SetUserInfo(string username, string role)
-        {
-            Username = username;
-            Role = role;
-            lblusernameRole.Text = $"{username} - {role}";
-            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
-        }
+        //public void SetUserInfo(string username, string role)
+        //{
+        //    Username = username;
+        //    Role = role;
+        //    lblusernameRole.Text = $"{username} - {role}";
+        //    lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
+        //}
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             frmAdminDashboard adminDashboard = new frmAdminDashboard();
-            adminDashboard.SetUserInfo(this.Username, this.Role); // Use this.Username and this.Role
+            //adminDashboard.SetUserInfo(this.Username, this.Role); // Use this.Username and this.Role
             adminDashboard.Show();
             this.Hide();
         }
@@ -330,14 +335,12 @@ namespace Book_Haven_System_Ad.Forms
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                // Logic for logging out (e.g., clear session, close form)
+                // Clear user session on logout
+                UserSession.Instance.Logout();
 
-                // For example: Show the login form
                 frmLogin loginForm = new frmLogin();
                 loginForm.Show();
                 this.Hide();
-
-
             }
         }
 

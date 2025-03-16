@@ -35,6 +35,11 @@ namespace Book_Haven_System_Ad.Forms
         public frmAdminDashboard()
         {
             InitializeComponent();
+             Username = UserSession.Instance.Username;
+             Role = UserSession.Instance.Role;
+
+            lblusernameRole.Text = $"{Username} - {Role}";
+            lbldate.Text = $"Today: {DateTime.Now:yyyy-MM-dd}";
             bookService = new BookService();
             _orderService = new OrderService();
             _userService = new UserService();
@@ -193,10 +198,9 @@ namespace Book_Haven_System_Ad.Forms
             }
         }
 
-        // Update the UI with the list of low stock books
         private void UpdateLowStockBooksUI(List<BookModel> lowStockBooks)
         {
-            checkedListBoxLawStock.Items.Clear();  // Clear existing items
+            checkedListBoxLawStock.Items.Clear();  
 
             // Sort the list by stock (ascending order)
             var orderedBooks = lowStockBooks.OrderBy(book => book.Stock).ToList();
@@ -242,31 +246,26 @@ namespace Book_Haven_System_Ad.Forms
         }
 
 
-        public void SetUserInfo(string username, string role)
-        {
-            Username = username;
-            Role = role;
-            lblusernameRole.Text = $"{username} - {role}";
-            lbldate.Text = $"Today: {DateTime.Now.ToString("yyyy-MM-dd")}";
-        }
+       
         private void picLogout_Click(object sender, EventArgs e)
         {
+           
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                
+                // Clear user session on logout
+                UserSession.Instance.Logout();
+
                 frmLogin loginForm = new frmLogin();
                 loginForm.Show();
                 this.Hide();
-
-
             }
         }
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             frmAdminDashboard adminDashboard = new frmAdminDashboard();
-            adminDashboard.SetUserInfo(this.Username, this.Role);
+            //adminDashboard.SetUserInfo(this.Username, this.Role);
             adminDashboard.Show();
             this.Hide();
         }

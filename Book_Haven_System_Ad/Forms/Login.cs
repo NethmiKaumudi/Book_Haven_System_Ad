@@ -28,29 +28,28 @@ namespace Book_Haven_System_Ad.Forms
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            
             string username = txtUserName.Text;
             string password = txtPassword.Text;
-
 
             string role = _userService.Login(username, password);
 
             if (role != null)
             {
+                UserSession.Instance.SetUser(username, role);
+
                 if (role == "Admin")
                 {
                     frmAdminDashboard adminDashboard = new frmAdminDashboard();
-                    adminDashboard.SetUserInfo(username, role);
                     adminDashboard.Show();
-                    this.Hide();
                 }
                 else if (role == "Sales Clerk")
                 {
-                    SalesClearkDashboard adminDashboard = new SalesClearkDashboard();
-                    adminDashboard.SetUserInfo(username, role);
-                    adminDashboard.Show();
-                    this.Hide();
-
+                    SalesClearkDashboard salesDashboard = new SalesClearkDashboard();
+                    salesDashboard.Show();
                 }
+
+                this.Hide();
             }
             else
             {

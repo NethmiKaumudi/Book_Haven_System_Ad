@@ -24,6 +24,11 @@ namespace Book_Haven_System_Ad.Forms
         public frmSupplierForm()
         {
             InitializeComponent();
+            Username = UserSession.Instance.Username;
+            Role = UserSession.Instance.Role;
+
+            lblusernameRole.Text = $"{Username} - {Role}";
+            lbldate.Text = $"Today: {DateTime.Now:yyyy-MM-dd}";
             _supplierService = new SupplierService();
             LoadSuppliers();
         }
@@ -299,11 +304,12 @@ namespace Book_Haven_System_Ad.Forms
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
+                // Clear user session on logout
+                UserSession.Instance.Logout();
 
                 frmLogin loginForm = new frmLogin();
                 loginForm.Show();
                 this.Hide();
-
             }
         }
 
@@ -316,7 +322,7 @@ namespace Book_Haven_System_Ad.Forms
         private void btnDashboard_Click(object sender, EventArgs e)
         {
             frmAdminDashboard adminDashboard = new frmAdminDashboard();
-            adminDashboard.SetUserInfo(this.Username, this.Role);
+            //adminDashboard.SetUserInfo(this.Username, this.Role);
             adminDashboard.Show();
             this.Hide();
         }
