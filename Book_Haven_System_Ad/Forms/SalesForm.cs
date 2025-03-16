@@ -73,12 +73,14 @@ namespace Book_Haven_System_Ad.Forms
             tblOrderCart.Columns.Add("BookName", "Book Name");
             tblOrderCart.Columns.Add("Author", "Author");
             tblOrderCart.Columns.Add("Price", "Price");
+            tblOrderCart.Columns.Add("Stock", "Stock");
             tblOrderCart.Columns.Add("Quantity", "Quantity");
 
             // Set AutoSizeMode to Fill for content columns
             tblOrderCart.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             tblOrderCart.Columns["Author"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             tblOrderCart.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            tblOrderCart.Columns["Stock"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             tblOrderCart.Columns["Quantity"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // Add a button column for removing a row
@@ -184,6 +186,8 @@ namespace Book_Haven_System_Ad.Forms
 
                         txtAuthor.Text = book.Author;
                         txtPrize.Text = book.Price.ToString("F2");
+                        txtStcok.Text = book.Stock.ToString();
+
 
                         txtOrderQty.Focus();
                     }
@@ -240,11 +244,21 @@ namespace Book_Haven_System_Ad.Forms
             string author = txtAuthor.Text.Trim();
             decimal price = 0;
             int quantity = 0;
+            int stock = 0;
 
+            // Validate inputs
             if (string.IsNullOrEmpty(bookName) || string.IsNullOrEmpty(author) ||
-                !decimal.TryParse(txtPrize.Text, out price) || !int.TryParse(txtOrderQty.Text, out quantity))
+                !decimal.TryParse(txtPrize.Text, out price) || !int.TryParse(txtOrderQty.Text, out quantity) ||
+                !int.TryParse(txtStcok.Text, out stock))
             {
                 MessageBox.Show("Please fill in all the fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // **Check if requested quantity is available in stock**
+            if (quantity > stock)
+            {
+                MessageBox.Show("Insufficient stock available.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -254,27 +268,38 @@ namespace Book_Haven_System_Ad.Forms
                 if (row.Cells["BookName"].Value != null && row.Cells["BookName"].Value.ToString() == bookName &&
                     row.Cells["Author"].Value != null && row.Cells["Author"].Value.ToString() == author)
                 {
-                    row.Cells["Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value) + quantity;
+                    int existingQuantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+
+                    // **Check if adding the new quantity exceeds available stock**
+                    if (existingQuantity + quantity > stock)
+                    {
+                        MessageBox.Show("Insufficient stock available for the selected quantity.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    row.Cells["Quantity"].Value = existingQuantity + quantity; // **Updating quantity correctly**
                     bookExists = true;
                     break;
                 }
             }
 
+            // **If the book does not exist in the cart, add it with the correct quantity**
             if (!bookExists)
             {
-                tblOrderCart.Rows.Add(_selectedBookId, bookName, author, price.ToString("F2"), quantity);
+                tblOrderCart.Rows.Add(_selectedBookId, bookName, author, price.ToString("F2"), stock,quantity);
             }
 
+            // **Reduce stock amount after adding to the cart**
+            txtStcok.Clear();
+
+            // Clear input fields
             txtBookName.Clear();
             txtAuthor.Clear();
             txtPrize.Clear();
             txtOrderQty.Clear();
             _selectedBookId = Guid.Empty;
 
-
             txtBookName.Focus();
-
-
 
             CalculateSubTotalAmount();
         }
@@ -302,6 +327,7 @@ namespace Book_Haven_System_Ad.Forms
                     txtBookName.Text = selectedRow.Cells["BookName"].Value?.ToString() ?? "";
                     txtAuthor.Text = selectedRow.Cells["Author"].Value?.ToString() ?? "";
                     txtPrize.Text = selectedRow.Cells["Price"].Value?.ToString() ?? "";
+                    txtStcok.Text = selectedRow.Cells["Stock"].Value?.ToString()??"";
 
                     txtOrderQty.Clear();
                 }
@@ -565,6 +591,16 @@ namespace Book_Haven_System_Ad.Forms
         private void btnReports_Click(object sender, EventArgs e)
         {
             NavigationHelper.OpenForm(this, new ReportForm());
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookName_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

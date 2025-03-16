@@ -96,6 +96,8 @@
             pictureBox1 = new PictureBox();
             btnDashboard = new Button();
             btnBooks = new Button();
+            label5 = new Label();
+            txtStcok = new TextBox();
             groupBox2.SuspendLayout();
             groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tblOrderCart).BeginInit();
@@ -151,6 +153,8 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Silver;
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(txtStcok);
             groupBox1.Controls.Add(btnAddtoOrderCart);
             groupBox1.Controls.Add(label14);
             groupBox1.Controls.Add(txtOrderQty);
@@ -166,6 +170,7 @@
             groupBox1.Size = new Size(914, 230);
             groupBox1.TabIndex = 114;
             groupBox1.TabStop = false;
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // btnAddtoOrderCart
             // 
@@ -185,28 +190,28 @@
             // 
             label14.AutoSize = true;
             label14.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label14.Location = new Point(666, 12);
+            label14.Location = new Point(765, 11);
             label14.Name = "label14";
-            label14.Size = new Size(86, 23);
+            label14.Size = new Size(135, 23);
             label14.TabIndex = 79;
-            label14.Text = "Quantity :";
+            label14.Text = "Order Quantity :";
             // 
             // txtOrderQty
             // 
             txtOrderQty.BackColor = Color.MintCream;
             txtOrderQty.BorderStyle = BorderStyle.FixedSingle;
             txtOrderQty.ForeColor = Color.Black;
-            txtOrderQty.Location = new Point(669, 40);
+            txtOrderQty.Location = new Point(770, 40);
             txtOrderQty.Name = "txtOrderQty";
             txtOrderQty.PlaceholderText = "Quantity";
-            txtOrderQty.Size = new Size(187, 27);
+            txtOrderQty.Size = new Size(129, 27);
             txtOrderQty.TabIndex = 78;
             // 
             // label15
             // 
             label15.AutoSize = true;
             label15.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label15.Location = new Point(457, 14);
+            label15.Location = new Point(452, 14);
             label15.Name = "label15";
             label15.Size = new Size(56, 23);
             label15.TabIndex = 77;
@@ -217,10 +222,10 @@
             txtPrize.BackColor = Color.MintCream;
             txtPrize.BorderStyle = BorderStyle.FixedSingle;
             txtPrize.ForeColor = Color.Black;
-            txtPrize.Location = new Point(459, 42);
+            txtPrize.Location = new Point(460, 40);
             txtPrize.Name = "txtPrize";
             txtPrize.PlaceholderText = "Prize";
-            txtPrize.Size = new Size(187, 27);
+            txtPrize.Size = new Size(151, 27);
             txtPrize.TabIndex = 76;
             // 
             // label17
@@ -264,6 +269,7 @@
             txtBookName.PlaceholderText = "BookName";
             txtBookName.Size = new Size(174, 27);
             txtBookName.TabIndex = 73;
+            txtBookName.TextChanged += txtBookName_TextChanged;
             txtBookName.KeyDown += txtBookName_KeyDown;
             // 
             // tblOrderCart
@@ -892,6 +898,27 @@
             btnBooks.UseVisualStyleBackColor = true;
             btnBooks.Click += btnBooks_Click;
             // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
+            label5.Location = new Point(639, 12);
+            label5.Name = "label5";
+            label5.Size = new Size(61, 23);
+            label5.TabIndex = 81;
+            label5.Text = "Stock :";
+            // 
+            // txtStcok
+            // 
+            txtStcok.BackColor = Color.MintCream;
+            txtStcok.BorderStyle = BorderStyle.FixedSingle;
+            txtStcok.ForeColor = Color.Black;
+            txtStcok.Location = new Point(641, 40);
+            txtStcok.Name = "txtStcok";
+            txtStcok.PlaceholderText = "Stcok";
+            txtStcok.Size = new Size(109, 27);
+            txtStcok.TabIndex = 80;
+            // 
             // frmSales
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -998,5 +1025,7 @@
         private PictureBox pictureBox1;
         private Button btnDashboard;
         private Button btnBooks;
+        private Label label5;
+        private TextBox txtStcok;
     }
 }

@@ -35,10 +35,16 @@ namespace Book_Haven_System_Ad.Forms
         {
             bool isValid = true;
 
-            // Validate Username
-            if (string.IsNullOrEmpty(txtUserName.Text.Trim()))
+            lblUserNameError.Text = "";
+            lblErrorPw.Text = "";
+
+            // Regular expression to require at least 4 letters and allow numbers
+            if (string.IsNullOrEmpty(txtUserName.Text.Trim()) ||
+                !System.Text.RegularExpressions.Regex.IsMatch(txtUserName.Text.Trim(), @"^(?=(.*[A-Za-z]){4,})[A-Za-z0-9]+$"))
             {
                 txtUserName.BackColor = System.Drawing.Color.Red;
+                lblUserNameError.Text = "Username must be at least 4 letters long.\nIt can contain letters and numbers."; // Multiline error message
+                lblUserNameError.ForeColor = System.Drawing.Color.Red;
                 isValid = false;
             }
             else
@@ -46,16 +52,22 @@ namespace Book_Haven_System_Ad.Forms
                 txtUserName.BackColor = System.Drawing.Color.White;
             }
 
-            // Validate Password
-            if (string.IsNullOrEmpty(txtPassword.Text.Trim()))
+
+            // Validate Password: At least 2 letters, 4 numbers, and total length of at least 6 characters
+            if (string.IsNullOrEmpty(txtPassword.Text.Trim()) ||
+                !System.Text.RegularExpressions.Regex.IsMatch(txtPassword.Text.Trim(), @"^(?=(.*[A-Za-z]){2})(?=(.*\d){4})[A-Za-z\d]{6,}$"))
             {
                 txtPassword.BackColor = System.Drawing.Color.Red;
+                lblErrorPw.Text = "Password must contain at least 2 letters,\n4 numbers, and a total length of at least 6 characters.";
+                lblErrorPw.ForeColor = System.Drawing.Color.Red; 
                 isValid = false;
             }
             else
             {
                 txtPassword.BackColor = System.Drawing.Color.White;
             }
+
+
 
             // Validate Role
             if (cmbUserRoles.SelectedItem == null)
@@ -271,7 +283,7 @@ namespace Book_Haven_System_Ad.Forms
                 Clearields();
             }
         }
-        
+
         private void picLogout_Click_1(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
@@ -339,6 +351,11 @@ namespace Book_Haven_System_Ad.Forms
         private void btnReports_Click(object sender, EventArgs e)
         {
             NavigationHelper.OpenForm(this, new ReportForm());
+
+        }
+
+        private void txtUserName_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

@@ -72,12 +72,14 @@ namespace Book_Haven_System_Ad.Forms
             tblOrderCart.Columns.Add("BookName", "Book Name");
             tblOrderCart.Columns.Add("Author", "Author");
             tblOrderCart.Columns.Add("Price", "Price");
+            tblOrderCart.Columns.Add("Stock", "Stock");
             tblOrderCart.Columns.Add("Quantity", "Quantity");
 
             // Set AutoSizeMode to Fill for content columns
             tblOrderCart.Columns["BookName"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             tblOrderCart.Columns["Author"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             tblOrderCart.Columns["Price"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            tblOrderCart.Columns["Stock"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             tblOrderCart.Columns["Quantity"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
             // Add a button column for removing a row
@@ -212,49 +214,63 @@ namespace Book_Haven_System_Ad.Forms
             string author = txtAuthor.Text.Trim();
             decimal price = 0;
             int quantity = 0;
+            int stock = 0;
 
-            // Check if all fields are valid
+            // Validate inputs
             if (string.IsNullOrEmpty(bookName) || string.IsNullOrEmpty(author) ||
-                !decimal.TryParse(txtPrize.Text, out price) || !int.TryParse(txtOrderQty.Text, out quantity))
+                !decimal.TryParse(txtPrize.Text, out price) || !int.TryParse(txtOrderQty.Text, out quantity) ||
+                !int.TryParse(txtStock.Text, out stock))
             {
                 MessageBox.Show("Please fill in all the fields correctly.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // Check if the book already exists in the DataGridView
+            // **Check if requested quantity is available in stock**
+            if (quantity > stock)
+            {
+                MessageBox.Show("Insufficient stock available.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             bool bookExists = false;
             foreach (DataGridViewRow row in tblOrderCart.Rows)
             {
-                // Check if the BookName and Author match
                 if (row.Cells["BookName"].Value != null && row.Cells["BookName"].Value.ToString() == bookName &&
                     row.Cells["Author"].Value != null && row.Cells["Author"].Value.ToString() == author)
                 {
-                    // Update the quantity of the existing book
-                    row.Cells["Quantity"].Value = Convert.ToInt32(row.Cells["Quantity"].Value) + quantity;
+                    int existingQuantity = Convert.ToInt32(row.Cells["Quantity"].Value);
+
+                    // **Check if adding the new quantity exceeds available stock**
+                    if (existingQuantity + quantity > stock)
+                    {
+                        MessageBox.Show("Insufficient stock available for the selected quantity.", "Stock Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    row.Cells["Quantity"].Value = existingQuantity + quantity; // **Updating quantity correctly**
                     bookExists = true;
                     break;
                 }
             }
 
+            // **If the book does not exist in the cart, add it with the correct quantity**
             if (!bookExists)
             {
-                // Add the book information to the DataGridView (tblSelectedBooks)
-                tblOrderCart.Rows.Add(_selectedBookId, bookName, author, price.ToString("F2"), quantity);
+                tblOrderCart.Rows.Add(_selectedBookId, bookName, author, price.ToString("F2"), stock, quantity);
             }
 
-            // Clear the text fields after adding
+            // **Reduce stock amount after adding to the cart**
+            txtStock.Clear();
+
+            // Clear input fields
             txtBookName.Clear();
             txtAuthor.Clear();
             txtPrize.Clear();
             txtOrderQty.Clear();
             _selectedBookId = Guid.Empty;
 
-
             txtBookName.Focus();
 
-
-
-            // Recalculate total amount after adding the book
             CalculateSubTotalAmount();
         }
 
@@ -492,7 +508,7 @@ namespace Book_Haven_System_Ad.Forms
         }
 
 
-      
+
         private void picLogout_Click(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
@@ -556,5 +572,7 @@ namespace Book_Haven_System_Ad.Forms
                 }
             }
         }
+
+       
     }
 }

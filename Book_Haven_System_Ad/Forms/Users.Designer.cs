@@ -33,6 +33,9 @@
             txtSerach = new TextBox();
             tblUsers = new DataGridView();
             groupBox1 = new GroupBox();
+            lblErrorPw = new Label();
+            lblPasswordError = new Label();
+            lblUserNameError = new Label();
             btnEdit = new Button();
             label8 = new Label();
             label6 = new Label();
@@ -100,7 +103,7 @@
             txtSerach.BackColor = Color.MintCream;
             txtSerach.BorderStyle = BorderStyle.FixedSingle;
             txtSerach.ForeColor = Color.Black;
-            txtSerach.Location = new Point(55, 254);
+            txtSerach.Location = new Point(55, 259);
             txtSerach.Name = "txtSerach";
             txtSerach.PlaceholderText = "Serach";
             txtSerach.Size = new Size(272, 27);
@@ -121,6 +124,9 @@
             // groupBox1
             // 
             groupBox1.BackColor = Color.Gainsboro;
+            groupBox1.Controls.Add(lblErrorPw);
+            groupBox1.Controls.Add(lblPasswordError);
+            groupBox1.Controls.Add(lblUserNameError);
             groupBox1.Controls.Add(btnEdit);
             groupBox1.Controls.Add(label8);
             groupBox1.Controls.Add(label6);
@@ -133,9 +139,34 @@
             groupBox1.Controls.Add(btnSave);
             groupBox1.Location = new Point(55, 46);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(901, 192);
+            groupBox1.Size = new Size(901, 202);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
+            // 
+            // lblErrorPw
+            // 
+            lblErrorPw.AutoSize = true;
+            lblErrorPw.Location = new Point(320, 101);
+            lblErrorPw.Name = "lblErrorPw";
+            lblErrorPw.Size = new Size(0, 20);
+            lblErrorPw.TabIndex = 42;
+            // 
+            // lblPasswordError
+            // 
+            lblPasswordError.AutoSize = true;
+            lblPasswordError.Location = new Point(313, 116);
+            lblPasswordError.Name = "lblPasswordError";
+            lblPasswordError.RightToLeft = RightToLeft.No;
+            lblPasswordError.Size = new Size(0, 20);
+            lblPasswordError.TabIndex = 41;
+            // 
+            // lblUserNameError
+            // 
+            lblUserNameError.AutoSize = true;
+            lblUserNameError.Location = new Point(38, 102);
+            lblUserNameError.Name = "lblUserNameError";
+            lblUserNameError.Size = new Size(0, 20);
+            lblUserNameError.TabIndex = 40;
             // 
             // btnEdit
             // 
@@ -143,7 +174,7 @@
             btnEdit.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnEdit.ForeColor = SystemColors.ActiveCaptionText;
             btnEdit.ImageAlign = ContentAlignment.MiddleLeft;
-            btnEdit.Location = new Point(301, 128);
+            btnEdit.Location = new Point(301, 142);
             btnEdit.Name = "btnEdit";
             btnEdit.Size = new Size(131, 41);
             btnEdit.TabIndex = 39;
@@ -155,7 +186,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label8.Location = new Point(586, 33);
+            label8.Location = new Point(607, 33);
             label8.Name = "label8";
             label8.Size = new Size(92, 23);
             label8.TabIndex = 38;
@@ -165,7 +196,7 @@
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold);
-            label6.Location = new Point(313, 33);
+            label6.Location = new Point(320, 33);
             label6.Name = "label6";
             label6.Size = new Size(91, 23);
             label6.TabIndex = 36;
@@ -187,7 +218,7 @@
             btnClear.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnClear.ForeColor = SystemColors.ActiveCaptionText;
             btnClear.ImageAlign = ContentAlignment.MiddleLeft;
-            btnClear.Location = new Point(612, 128);
+            btnClear.Location = new Point(612, 142);
             btnClear.Name = "btnClear";
             btnClear.Size = new Size(131, 41);
             btnClear.TabIndex = 35;
@@ -201,7 +232,7 @@
             btnDelete.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.ForeColor = SystemColors.ActiveCaptionText;
             btnDelete.ImageAlign = ContentAlignment.MiddleLeft;
-            btnDelete.Location = new Point(460, 128);
+            btnDelete.Location = new Point(460, 142);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(131, 41);
             btnDelete.TabIndex = 34;
@@ -215,7 +246,7 @@
             cmbUserRoles.ForeColor = Color.Black;
             cmbUserRoles.FormattingEnabled = true;
             cmbUserRoles.Items.AddRange(new object[] { "Admin", "Sales Clerk" });
-            cmbUserRoles.Location = new Point(586, 70);
+            cmbUserRoles.Location = new Point(607, 70);
             cmbUserRoles.Name = "cmbUserRoles";
             cmbUserRoles.Size = new Size(251, 28);
             cmbUserRoles.TabIndex = 32;
@@ -226,7 +257,7 @@
             txtPassword.BackColor = Color.MintCream;
             txtPassword.BorderStyle = BorderStyle.FixedSingle;
             txtPassword.ForeColor = Color.Black;
-            txtPassword.Location = new Point(313, 71);
+            txtPassword.Location = new Point(320, 71);
             txtPassword.Name = "txtPassword";
             txtPassword.PlaceholderText = "Password";
             txtPassword.Size = new Size(242, 27);
@@ -242,6 +273,7 @@
             txtUserName.PlaceholderText = "Username";
             txtUserName.Size = new Size(242, 27);
             txtUserName.TabIndex = 27;
+            txtUserName.TextChanged += txtUserName_TextChanged;
             // 
             // btnSave
             // 
@@ -249,7 +281,7 @@
             btnSave.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSave.ForeColor = SystemColors.ActiveCaptionText;
             btnSave.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSave.Location = new Point(143, 128);
+            btnSave.Location = new Point(143, 142);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(131, 41);
             btnSave.TabIndex = 22;
@@ -614,5 +646,8 @@
         private PictureBox pictureBox1;
         private Button btnDashboard;
         private Button btnBooks;
+        private Label lblPasswordError;
+        private Label lblUserNameError;
+        private Label lblErrorPw;
     }
 }
