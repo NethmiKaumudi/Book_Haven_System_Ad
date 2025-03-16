@@ -174,13 +174,6 @@ namespace Book_Haven_System_Ad.Forms
 
 
 
-
-
-
-
-
-
-
         private void tblUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -194,23 +187,49 @@ namespace Book_Haven_System_Ad.Forms
 
         private void txtSerach_TextChanged(object sender, EventArgs e)
         {
-            string searchTerm = txtSerach.Text.Trim().ToLower(); // Convert input to lowercase
+            string searchTerm = txtSerach.Text.Trim().ToLower();
 
             if (string.IsNullOrEmpty(searchTerm))
             {
-                tblUsers.DataSource = users;  // Ensure 'users' contains the original full list
+                tblUsers.DataSource = users;
             }
             else
             {
-                // Ensure no null values cause errors
                 var filteredUsers = users
                     .Where(u => (u.Username != null && u.Username.ToLower().Contains(searchTerm)) ||
                                 (u.Role != null && u.Role.ToLower().Contains(searchTerm)))
+                    .Select(u => new
+                    {
+                        u.UserID,
+                        u.Username,
+                        u.Role
+                    })
                     .ToList();
 
-                // Bind the filtered list to the DataGridView
-                tblUsers.DataSource = null;  // Reset before rebinding
+                tblUsers.DataSource = null;
                 tblUsers.DataSource = filteredUsers;
+            }
+
+            // Ensure only required columns are visible
+            if (tblUsers.Columns.Count > 0)
+            {
+                tblUsers.Columns["UserID"].HeaderText = "User ID";
+                tblUsers.Columns["Username"].HeaderText = "Username";
+                tblUsers.Columns["Role"].HeaderText = "Role";
+
+                foreach (DataGridViewColumn column in tblUsers.Columns)
+                {
+                    if (column.Name != "UserID" && column.Name != "Username" && column.Name != "Role")
+                    {
+                        column.Visible = false;
+                    }
+                }
+
+                // Auto-size columns
+                tblUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                tblUsers.Columns["UserID"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                tblUsers.Columns["Username"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                tblUsers.Columns["Role"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
 

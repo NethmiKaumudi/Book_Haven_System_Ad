@@ -213,10 +213,17 @@ namespace Book_Haven_System_Ad.Forms
                 if (selectedMethod == "POS")
                 {
                     groupBoxOnlineOrder.Visible = false;
+                    groupBoxPosOrders.Visible = true;  // Ensure POS group is visible
                 }
                 else if (selectedMethod == "Online")
                 {
                     groupBoxOnlineOrder.Visible = true;
+                    groupBoxPosOrders.Visible = false;
+                }
+                else
+                {
+                    // Default case: Ensure both are hidden or reset visibility as needed
+                    groupBoxOnlineOrder.Visible = false;
                     groupBoxPosOrders.Visible = false;
                 }
             }

@@ -457,6 +457,7 @@
             checkedListBoxLawStock.Name = "checkedListBoxLawStock";
             checkedListBoxLawStock.Size = new Size(410, 224);
             checkedListBoxLawStock.TabIndex = 5;
+            checkedListBoxLawStock.SelectedIndexChanged += checkedListBoxLawStock_SelectedIndexChanged;
             // 
             // groupBox4
             // 

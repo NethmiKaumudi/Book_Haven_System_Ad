@@ -35,8 +35,8 @@ namespace Book_Haven_System_Ad.Forms
         public frmAdminDashboard()
         {
             InitializeComponent();
-             Username = UserSession.Instance.Username;
-             Role = UserSession.Instance.Role;
+            Username = UserSession.Instance.Username;
+            Role = UserSession.Instance.Role;
 
             lblusernameRole.Text = $"{Username} - {Role}";
             lbldate.Text = $"Today: {DateTime.Now:yyyy-MM-dd}";
@@ -50,22 +50,22 @@ namespace Book_Haven_System_Ad.Forms
             LoadLowStockBooks();
             tblSalesPerformance.Columns.Add("ProcessedByColumn", "Processed By");
             tblSalesPerformance.Columns.Add("TotalSalesColumn", "Total Sales");
-            LoadTodaySalesData();    
+            LoadTodaySalesData();
             LoadYesterdaySalesData();
             LoadUserCount();
             LoadTotalSalesForToday();
             LoadBookCount();
             LoadCustomerCount();
         }
-      
+
         public void LoadTodaySalesData()
         {
-            LoadSalesData(DateTime.Now); 
+            LoadSalesData(DateTime.Now);
         }
 
         public void LoadYesterdaySalesData()
         {
-            LoadSalesData(DateTime.Now.AddDays(-1)); 
+            LoadSalesData(DateTime.Now.AddDays(-1));
         }
         public void LoadUserCount()
         {
@@ -96,7 +96,7 @@ namespace Book_Haven_System_Ad.Forms
                     lblSalesClerksCount.Text = "Total Sales Clerks: 0";
                 }
 
-            
+
             }
             catch (Exception ex)
             {
@@ -200,7 +200,7 @@ namespace Book_Haven_System_Ad.Forms
 
         private void UpdateLowStockBooksUI(List<BookModel> lowStockBooks)
         {
-            checkedListBoxLawStock.Items.Clear();  
+            checkedListBoxLawStock.Items.Clear();
 
             // Sort the list by stock (ascending order)
             var orderedBooks = lowStockBooks.OrderBy(book => book.Stock).ToList();
@@ -246,10 +246,10 @@ namespace Book_Haven_System_Ad.Forms
         }
 
 
-       
+
         private void picLogout_Click(object sender, EventArgs e)
         {
-           
+
             DialogResult dialogResult = MessageBox.Show("Are you sure you want to log out?", "Log Out", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
@@ -313,6 +313,11 @@ namespace Book_Haven_System_Ad.Forms
         private void btnReports_Click(object sender, EventArgs e)
         {
             NavigationHelper.OpenForm(this, new ReportForm());
+
+        }
+
+        private void checkedListBoxLawStock_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
