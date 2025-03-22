@@ -193,7 +193,7 @@ namespace Book_Haven_System_Ad.Data.Repository
     {
         using (var connection = new MySqlConnection(connectionString))
         {
-            string query = "SELECT * FROM books WHERE Title = @Title AND IsDeleted = 0";  // Ensure the book is not deleted
+            string query = "SELECT * FROM books WHERE Title = @Title AND IsDeleted = 0"; 
 
             using (var command = new MySqlCommand(query, connection))
             {
